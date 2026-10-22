@@ -1,0 +1,1767 @@
+Fithub/
+├── backups
+│   ├── clients
+│   │   ├── clients_2026-10-19_03-13-23.tar.gz
+│   │   └── clients_2026-10-19_03-21-33.tar.gz
+│   ├── configs
+│   ├── database
+│   └── library
+│       └── library_2026-10-19_03-21-33.tar.gz
+├── configs
+│   ├── Dockerfile
+│   ├── fithub-backend.yml
+│   ├── fithub-cloudflare.yml
+│   ├── fithub-frontend.yml
+│   ├── fithub-mail.yml
+│   ├── fithub-postgres17.yml
+│   ├── fithub-redis.yml
+│   └── users.txt
+├── FitHub
+│   ├── CONTRIBUTING.md
+│   ├── docker
+│   │   ├── config
+│   │   │   ├── grafana
+│   │   │   │   └── Dockerfile
+│   │   │   └── prometheus.yml
+│   │   ├── docker-compose-dev.yml
+│   │   └── docker-compose.yml
+│   ├── Dockerfile
+│   ├── docs
+│   │   ├── ARCHITECTURE.md
+│   │   ├── DATABASE.md
+│   │   ├── FRONTEND.md
+│   │   └── INFRASTRUCTURE.md
+│   ├── env.example
+│   ├── frontend
+│   │   ├── eslint.config.js
+│   │   ├── index.html
+│   │   ├── node_modules
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── postcss.config.js
+│   │   ├── public
+│   │   │   ├── locales
+│   │   │   │   ├── en
+│   │   │   │   │   ├── admin.json
+│   │   │   │   │   ├── analytics.json
+│   │   │   │   │   ├── auth.json
+│   │   │   │   │   ├── common.json
+│   │   │   │   │   ├── dashboard.json
+│   │   │   │   │   ├── landing.json
+│   │   │   │   │   ├── memberships.json
+│   │   │   │   │   ├── navigation.json
+│   │   │   │   │   ├── notifications.json
+│   │   │   │   │   ├── nutrition.json
+│   │   │   │   │   ├── onboarding.json
+│   │   │   │   │   ├── profile.json
+│   │   │   │   │   ├── progress.json
+│   │   │   │   │   ├── sessions.json
+│   │   │   │   │   ├── trainers.json
+│   │   │   │   │   ├── validation.json
+│   │   │   │   │   └── workouts.json
+│   │   │   │   ├── ru
+│   │   │   │   │   ├── admin.json
+│   │   │   │   │   ├── analytics.json
+│   │   │   │   │   ├── auth.json
+│   │   │   │   │   ├── common.json
+│   │   │   │   │   ├── dashboard.json
+│   │   │   │   │   ├── landing.json
+│   │   │   │   │   ├── memberships.json
+│   │   │   │   │   ├── navigation.json
+│   │   │   │   │   ├── notifications.json
+│   │   │   │   │   ├── nutrition.json
+│   │   │   │   │   ├── onboarding.json
+│   │   │   │   │   ├── profile.json
+│   │   │   │   │   ├── progress.json
+│   │   │   │   │   ├── sessions.json
+│   │   │   │   │   ├── trainers.json
+│   │   │   │   │   ├── validation.json
+│   │   │   │   │   └── workouts.json
+│   │   │   │   └── uk
+│   │   │   │       ├── admin.json
+│   │   │   │       ├── analytics.json
+│   │   │   │       ├── auth.json
+│   │   │   │       ├── common.json
+│   │   │   │       ├── dashboard.json
+│   │   │   │       ├── landing.json
+│   │   │   │       ├── memberships.json
+│   │   │   │       ├── navigation.json
+│   │   │   │       ├── notifications.json
+│   │   │   │       ├── nutrition.json
+│   │   │   │       ├── onboarding.json
+│   │   │   │       ├── profile.json
+│   │   │   │       ├── progress.json
+│   │   │   │       ├── sessions.json
+│   │   │   │       ├── trainers.json
+│   │   │   │       ├── validation.json
+│   │   │   │       └── workouts.json
+│   │   │   └── vite.svg
+│   │   ├── README.md
+│   │   ├── src
+│   │   │   ├── App.tsx
+│   │   │   ├── assets
+│   │   │   │   └── react.svg
+│   │   │   ├── components
+│   │   │   │   ├── ErrorBoundary.tsx
+│   │   │   │   ├── ErrorFallback.tsx
+│   │   │   │   ├── LanguageSwitcher.tsx
+│   │   │   │   ├── ProfileOnboardingGate.tsx
+│   │   │   │   ├── ProtectedRoute.tsx
+│   │   │   │   ├── ui
+│   │   │   │   │   ├── button.tsx
+│   │   │   │   │   ├── card.tsx
+│   │   │   │   │   ├── empty-state.tsx
+│   │   │   │   │   ├── form-field.tsx
+│   │   │   │   │   ├── info-tile.tsx
+│   │   │   │   │   ├── input.tsx
+│   │   │   │   │   ├── label.tsx
+│   │   │   │   │   ├── metric-card.tsx
+│   │   │   │   │   ├── modal.tsx
+│   │   │   │   │   ├── pagination.tsx
+│   │   │   │   │   ├── progress-bar.tsx
+│   │   │   │   │   ├── skeleton.tsx
+│   │   │   │   │   ├── star-rating.tsx
+│   │   │   │   │   ├── status-badge.tsx
+│   │   │   │   │   ├── status-colors.ts
+│   │   │   │   │   └── summary-card.tsx
+│   │   │   │   └── workouts
+│   │   │   │       ├── AddExerciseModal.tsx
+│   │   │   │       ├── AssignPlanModal.tsx
+│   │   │   │       ├── CreatePlanModal.tsx
+│   │   │   │       ├── LogWorkoutModal.tsx
+│   │   │   │       └── PlanExerciseReorder.tsx
+│   │   │   ├── contexts
+│   │   │   │   └── ThemeContext.tsx
+│   │   │   ├── i18n
+│   │   │   │   └── config.ts
+│   │   │   ├── index.css
+│   │   │   ├── layouts
+│   │   │   │   └── MainLayout.tsx
+│   │   │   ├── lib
+│   │   │   │   └── utils.ts
+│   │   │   ├── locales
+│   │   │   │   ├── en
+│   │   │   │   │   ├── admin.json
+│   │   │   │   │   ├── analytics.json
+│   │   │   │   │   ├── auth.json
+│   │   │   │   │   ├── common.json
+│   │   │   │   │   ├── dashboard.json
+│   │   │   │   │   ├── landing.json
+│   │   │   │   │   ├── memberships.json
+│   │   │   │   │   ├── navigation.json
+│   │   │   │   │   ├── notifications.json
+│   │   │   │   │   ├── nutrition.json
+│   │   │   │   │   ├── onboarding.json
+│   │   │   │   │   ├── profile.json
+│   │   │   │   │   ├── progress.json
+│   │   │   │   │   ├── sessions.json
+│   │   │   │   │   ├── trainers.json
+│   │   │   │   │   ├── validation.json
+│   │   │   │   │   └── workouts.json
+│   │   │   │   ├── ru
+│   │   │   │   │   ├── admin.json
+│   │   │   │   │   ├── analytics.json
+│   │   │   │   │   ├── auth.json
+│   │   │   │   │   ├── common.json
+│   │   │   │   │   ├── dashboard.json
+│   │   │   │   │   ├── landing.json
+│   │   │   │   │   ├── memberships.json
+│   │   │   │   │   ├── navigation.json
+│   │   │   │   │   ├── notifications.json
+│   │   │   │   │   ├── nutrition.json
+│   │   │   │   │   ├── onboarding.json
+│   │   │   │   │   ├── profile.json
+│   │   │   │   │   ├── progress.json
+│   │   │   │   │   ├── sessions.json
+│   │   │   │   │   ├── trainers.json
+│   │   │   │   │   ├── validation.json
+│   │   │   │   │   └── workouts.json
+│   │   │   │   └── uk
+│   │   │   │       ├── admin.json
+│   │   │   │       ├── analytics.json
+│   │   │   │       ├── auth.json
+│   │   │   │       ├── common.json
+│   │   │   │       ├── dashboard.json
+│   │   │   │       ├── landing.json
+│   │   │   │       ├── memberships.json
+│   │   │   │       ├── navigation.json
+│   │   │   │       ├── notifications.json
+│   │   │   │       ├── nutrition.json
+│   │   │   │       ├── onboarding.json
+│   │   │   │       ├── profile.json
+│   │   │   │       ├── progress.json
+│   │   │   │       ├── sessions.json
+│   │   │   │       ├── trainers.json
+│   │   │   │       ├── validation.json
+│   │   │   │       └── workouts.json
+│   │   │   ├── main.tsx
+│   │   │   ├── pages
+│   │   │   │   ├── Admin.tsx
+│   │   │   │   ├── Analytics.tsx
+│   │   │   │   ├── Dashboard.tsx
+│   │   │   │   ├── ExerciseManagement.tsx
+│   │   │   │   ├── FoodManagement.tsx
+│   │   │   │   ├── ForgotPassword.tsx
+│   │   │   │   ├── Landing.tsx
+│   │   │   │   ├── Login.tsx
+│   │   │   │   ├── Memberships.tsx
+│   │   │   │   ├── NotFound.tsx
+│   │   │   │   ├── Notifications.tsx
+│   │   │   │   ├── Nutrition.tsx
+│   │   │   │   ├── Onboarding.tsx
+│   │   │   │   ├── Profile.tsx
+│   │   │   │   ├── Progress.tsx
+│   │   │   │   ├── Register.tsx
+│   │   │   │   ├── ResetPassword.tsx
+│   │   │   │   ├── Sessions.tsx
+│   │   │   │   ├── TrainerProfile.tsx
+│   │   │   │   ├── Trainers.tsx
+│   │   │   │   ├── TrainerSessions.tsx
+│   │   │   │   ├── TrainerWorkouts.tsx
+│   │   │   │   ├── VerifyEmail.tsx
+│   │   │   │   ├── WorkoutDetail.tsx
+│   │   │   │   └── Workouts.tsx
+│   │   │   ├── services
+│   │   │   │   ├── api-helpers.ts
+│   │   │   │   ├── api.ts
+│   │   │   │   ├── app.service.ts
+│   │   │   │   ├── auth.service.ts
+│   │   │   │   ├── dashboard.service.ts
+│   │   │   │   ├── membership.service.ts
+│   │   │   │   ├── notification.service.ts
+│   │   │   │   ├── nutrition.service.ts
+│   │   │   │   ├── payment.service.ts
+│   │   │   │   ├── profile.service.ts
+│   │   │   │   ├── progress.service.ts
+│   │   │   │   ├── review.service.ts
+│   │   │   │   ├── specialization.service.ts
+│   │   │   │   ├── trainer.service.ts
+│   │   │   │   ├── user.service.ts
+│   │   │   │   └── workout.service.ts
+│   │   │   ├── store
+│   │   │   │   └── useAuthStore.ts
+│   │   │   ├── types
+│   │   │   │   ├── app.types.ts
+│   │   │   │   ├── auth.types.ts
+│   │   │   │   ├── common.types.ts
+│   │   │   │   ├── dashboard.types.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── membership.types.ts
+│   │   │   │   ├── notification.types.ts
+│   │   │   │   ├── nutrition.types.ts
+│   │   │   │   ├── progress.types.ts
+│   │   │   │   ├── review.types.ts
+│   │   │   │   ├── user.types.ts
+│   │   │   │   └── workout.types.ts
+│   │   │   └── utils
+│   │   │       ├── errorHandler.ts
+│   │   │       ├── toast.ts
+│   │   │       └── useMountedRef.ts
+│   │   ├── tailwind.config.js
+│   │   ├── tsconfig.app.json
+│   │   ├── tsconfig.json
+│   │   ├── tsconfig.node.json
+│   │   └── vite.config.ts
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   ├── qodana.yaml
+│   ├── readme.md
+│   ├── src
+│   │   ├── main
+│   │   │   ├── java
+│   │   │   │   └── com
+│   │   │   │       └── dev
+│   │   │   │           └── quikkkk
+│   │   │   │               ├── core
+│   │   │   │               │   ├── config
+│   │   │   │               │   │   ├── AsyncConfig.java
+│   │   │   │               │   │   ├── BeansConfig.java
+│   │   │   │               │   │   ├── RedisConfig.java
+│   │   │   │               │   │   ├── RedisHealthIndicator.java
+│   │   │   │               │   │   ├── SecurityConfig.java
+│   │   │   │               │   │   ├── TimeConfig.java
+│   │   │   │               │   │   └── WebConfig.java
+│   │   │   │               │   ├── controller
+│   │   │   │               │   │   └── CacheManagementController.java
+│   │   │   │               │   ├── dto
+│   │   │   │               │   │   ├── ErrorResponse.java
+│   │   │   │               │   │   ├── MessageResponse.java
+│   │   │   │               │   │   └── PageResponse.java
+│   │   │   │               │   ├── entity
+│   │   │   │               │   │   └── BaseEntity.java
+│   │   │   │               │   ├── enums
+│   │   │   │               │   │   └── ErrorCode.java
+│   │   │   │               │   ├── exception
+│   │   │   │               │   │   ├── BusinessException.java
+│   │   │   │               │   │   ├── DuplicateResourceException.java
+│   │   │   │               │   │   ├── EmailException.java
+│   │   │   │               │   │   ├── EmailRetryExhaustedException.java
+│   │   │   │               │   │   ├── EmailSendException.java
+│   │   │   │               │   │   ├── EmailTemplateException.java
+│   │   │   │               │   │   ├── GlobalExceptionHandler.java
+│   │   │   │               │   │   ├── InsufficientBalanceException.java
+│   │   │   │               │   │   ├── InvalidEmailAddressException.java
+│   │   │   │               │   │   ├── ResourceNotFoundException.java
+│   │   │   │               │   │   └── SpecificExceptionHandlers.java
+│   │   │   │               │   ├── functional
+│   │   │   │               │   │   ├── LockOperation.java
+│   │   │   │               │   │   └── MacroExtractor.java
+│   │   │   │               │   ├── mapper
+│   │   │   │               │   │   └── MessageMapper.java
+│   │   │   │               │   ├── metrics
+│   │   │   │               │   │   └── HikariMetricsJob.java
+│   │   │   │               │   ├── ratelimit
+│   │   │   │               │   │   ├── impl
+│   │   │   │               │   │   │   └── RateLimitServiceImpl.java
+│   │   │   │               │   │   └── IRateLimitService.java
+│   │   │   │               │   ├── security
+│   │   │   │               │   │   ├── ApplicationAuditorAware.java
+│   │   │   │               │   │   ├── JwtFilter.java
+│   │   │   │               │   │   ├── JwtKeyProvider.java
+│   │   │   │               │   │   ├── SecurityUser.java
+│   │   │   │               │   │   └── UserPrincipal.java
+│   │   │   │               │   ├── service
+│   │   │   │               │   │   ├── impl
+│   │   │   │               │   │   │   └── RedisCacheStatisticsServiceImpl.java
+│   │   │   │               │   │   └── IRedisCacheStatisticsService.java
+│   │   │   │               │   ├── utils
+│   │   │   │               │   │   ├── CacheWarmer.java
+│   │   │   │               │   │   ├── ClientIpUtils.java
+│   │   │   │               │   │   ├── KeyUtils.java
+│   │   │   │               │   │   ├── PaginationUtils.java
+│   │   │   │               │   │   ├── PerformanceMonitor.java
+│   │   │   │               │   │   ├── RateLimitInterceptor.java
+│   │   │   │               │   │   ├── RequestLoggingFilter.java
+│   │   │   │               │   │   ├── SecurityUtils.java
+│   │   │   │               │   │   ├── ServiceUtils.java
+│   │   │   │               │   │   └── TimeAgoFormatter.java
+│   │   │   │               │   └── validation
+│   │   │   │               │       ├── EmailDomainValidator.java
+│   │   │   │               │       ├── NonDisposableEmail.java
+│   │   │   │               │       ├── PasswordMatches.java
+│   │   │   │               │       ├── PasswordMatchesValidator.java
+│   │   │   │               │       └── ValidationPatterns.java
+│   │   │   │               ├── FitHubApplication.java
+│   │   │   │               └── modules
+│   │   │   │                   ├── app
+│   │   │   │                   │   ├── controller
+│   │   │   │                   │   │   └── AppBoostrapController.java
+│   │   │   │                   │   ├── dto
+│   │   │   │                   │   │   ├── enums
+│   │   │   │                   │   │   │   └── ProfileStatus.java
+│   │   │   │                   │   │   └── response
+│   │   │   │                   │   │       └── AppBootstrapResponse.java
+│   │   │   │                   │   └── services
+│   │   │   │                   │       ├── IAppBootstrapService.java
+│   │   │   │                   │       └── impl
+│   │   │   │                   │           └── AppBootstrapServiceImpl.java
+│   │   │   │                   ├── auth
+│   │   │   │                   │   ├── controller
+│   │   │   │                   │   │   ├── AccountActionController.java
+│   │   │   │                   │   │   └── AuthenticationController.java
+│   │   │   │                   │   ├── dto
+│   │   │   │                   │   │   ├── request
+│   │   │   │                   │   │   │   ├── LoginRequest.java
+│   │   │   │                   │   │   │   ├── RefreshTokenRequest.java
+│   │   │   │                   │   │   │   ├── RegistrationRequest.java
+│   │   │   │                   │   │   │   └── ResetPasswordRequest.java
+│   │   │   │                   │   │   └── response
+│   │   │   │                   │   │       └── AuthenticationResponse.java
+│   │   │   │                   │   ├── entity
+│   │   │   │                   │   │   └── VerificationToken.java
+│   │   │   │                   │   ├── enums
+│   │   │   │                   │   │   ├── JwtTokenType.java
+│   │   │   │                   │   │   └── TokenType.java
+│   │   │   │                   │   ├── mapper
+│   │   │   │                   │   │   ├── AuthenticationMapper.java
+│   │   │   │                   │   │   └── VerificationTokenMapper.java
+│   │   │   │                   │   ├── repository
+│   │   │   │                   │   │   └── IVerificationTokenRepository.java
+│   │   │   │                   │   ├── scheduler
+│   │   │   │                   │   │   └── VerificationTokenCleanupJob.java
+│   │   │   │                   │   └── service
+│   │   │   │                   │       ├── IAccountActionService.java
+│   │   │   │                   │       ├── IAuthenticationService.java
+│   │   │   │                   │       ├── IJwtService.java
+│   │   │   │                   │       ├── impl
+│   │   │   │                   │       │   ├── AccountActionServiceImpl.java
+│   │   │   │                   │       │   ├── AuthenticationServiceImpl.java
+│   │   │   │                   │       │   ├── CustomUserDetailsServiceImpl.java
+│   │   │   │                   │       │   ├── JwtServiceImpl.java
+│   │   │   │                   │       │   ├── SessionLockServiceImpl.java
+│   │   │   │                   │       │   ├── TokenBlacklistServiceImpl.java
+│   │   │   │                   │       │   └── VerificationTokenServiceImpl.java
+│   │   │   │                   │       ├── ISessionLockService.java
+│   │   │   │                   │       ├── ITokenBlacklistService.java
+│   │   │   │                   │       └── IVerificationTokenService.java
+│   │   │   │                   ├── dashboard
+│   │   │   │                   │   ├── controller
+│   │   │   │                   │   │   └── DashboardController.java
+│   │   │   │                   │   ├── dto
+│   │   │   │                   │   │   ├── DashboardAnalyticsResponse.java
+│   │   │   │                   │   │   └── PopularSessionResponse.java
+│   │   │   │                   │   ├── mapper
+│   │   │   │                   │   │   └── DashboardMapper.java
+│   │   │   │                   │   └── service
+│   │   │   │                   │       ├── IDashboardService.java
+│   │   │   │                   │       └── impl
+│   │   │   │                   │           └── DashboardServiceImpl.java
+│   │   │   │                   ├── membership
+│   │   │   │                   │   ├── controller
+│   │   │   │                   │   │   ├── MembershipController.java
+│   │   │   │                   │   │   └── PaymentController.java
+│   │   │   │                   │   ├── dto
+│   │   │   │                   │   │   ├── request
+│   │   │   │                   │   │   │   ├── CreateMembershipRequest.java
+│   │   │   │                   │   │   │   ├── CreatePaymentRequest.java
+│   │   │   │                   │   │   │   └── ExtendMembershipRequest.java
+│   │   │   │                   │   │   └── response
+│   │   │   │                   │   │       ├── MembershipHistoryResponse.java
+│   │   │   │                   │   │       ├── MembershipResponse.java
+│   │   │   │                   │   │       ├── MembershipShortResponse.java
+│   │   │   │                   │   │       ├── MembershipValidationResponse.java
+│   │   │   │                   │   │       ├── PaymentResponse.java
+│   │   │   │                   │   │       └── RevenueStatsResponse.java
+│   │   │   │                   │   ├── entity
+│   │   │   │                   │   │   ├── Membership.java
+│   │   │   │                   │   │   └── Payment.java
+│   │   │   │                   │   ├── enums
+│   │   │   │                   │   │   ├── MembershipStatus.java
+│   │   │   │                   │   │   ├── MembershipType.java
+│   │   │   │                   │   │   ├── PaymentCurrency.java
+│   │   │   │                   │   │   └── PaymentStatus.java
+│   │   │   │                   │   ├── mapper
+│   │   │   │                   │   │   ├── MembershipMapper.java
+│   │   │   │                   │   │   └── PaymentMapper.java
+│   │   │   │                   │   ├── repository
+│   │   │   │                   │   │   ├── IMembershipRepository.java
+│   │   │   │                   │   │   └── IPaymentRepository.java
+│   │   │   │                   │   ├── scheduler
+│   │   │   │                   │   │   └── MembershipExpirationJob.java
+│   │   │   │                   │   ├── service
+│   │   │   │                   │   │   ├── IMembershipService.java
+│   │   │   │                   │   │   ├── impl
+│   │   │   │                   │   │   │   ├── MembershipServiceImpl.java
+│   │   │   │                   │   │   │   └── PaymentServiceImpl.java
+│   │   │   │                   │   │   └── IPaymentService.java
+│   │   │   │                   │   └── utils
+│   │   │   │                   │       ├── CurrencyConverter.java
+│   │   │   │                   │       └── TronPaymentValidator.java
+│   │   │   │                   ├── notification
+│   │   │   │                   │   ├── controller
+│   │   │   │                   │   │   ├── NotificationController.java
+│   │   │   │                   │   │   └── TelegramWebhookController.java
+│   │   │   │                   │   ├── dto
+│   │   │   │                   │   │   ├── request
+│   │   │   │                   │   │   │   ├── BroadcastNotificationRequest.java
+│   │   │   │                   │   │   │   └── CreateNotificationRequest.java
+│   │   │   │                   │   │   ├── response
+│   │   │   │                   │   │   │   ├── NotificationRealtimeEventResponse.java
+│   │   │   │                   │   │   │   ├── NotificationResponse.java
+│   │   │   │                   │   │   │   └── NotificationSummaryResponse.java
+│   │   │   │                   │   │   └── telegram
+│   │   │   │                   │   │       ├── TelegramChat.java
+│   │   │   │                   │   │       ├── TelegramMessage.java
+│   │   │   │                   │   │       └── TelegramUpdate.java
+│   │   │   │                   │   ├── entity
+│   │   │   │                   │   │   ├── EmailFailureLog.java
+│   │   │   │                   │   │   └── Notification.java
+│   │   │   │                   │   ├── enums
+│   │   │   │                   │   │   ├── EmailType.java
+│   │   │   │                   │   │   ├── NotificationPriority.java
+│   │   │   │                   │   │   └── NotificationType.java
+│   │   │   │                   │   ├── event
+│   │   │   │                   │   │   └── NotificationEvent.java
+│   │   │   │                   │   ├── listener
+│   │   │   │                   │   │   └── NotificationEventListener.java
+│   │   │   │                   │   ├── mapper
+│   │   │   │                   │   │   └── NotificationMapper.java
+│   │   │   │                   │   ├── realtime
+│   │   │   │                   │   │   ├── impl
+│   │   │   │                   │   │   │   └── NotificationRealtimeServiceImpl.java
+│   │   │   │                   │   │   └── INotificationRealtimeService.java
+│   │   │   │                   │   ├── repository
+│   │   │   │                   │   │   ├── IEmailFailureLogRepository.java
+│   │   │   │                   │   │   └── INotificationRepository.java
+│   │   │   │                   │   ├── scheduler
+│   │   │   │                   │   │   ├── NotificationCleanupJob.java
+│   │   │   │                   │   │   └── NotificationHeartbeatJob.java
+│   │   │   │                   │   └── service
+│   │   │   │                   │       ├── IEmailService.java
+│   │   │   │                   │       ├── impl
+│   │   │   │                   │       │   ├── EmailServiceImpl.java
+│   │   │   │                   │       │   ├── NotificationServiceImpl.java
+│   │   │   │                   │       │   ├── TelegramNotificationServiceImpl.java
+│   │   │   │                   │       │   └── TelegramWebhookServiceImpl.java
+│   │   │   │                   │       ├── INotificationService.java
+│   │   │   │                   │       ├── ITelegramNotificationService.java
+│   │   │   │                   │       └── ITelegramWebhookService.java
+│   │   │   │                   ├── nutrition
+│   │   │   │                   │   ├── controller
+│   │   │   │                   │   │   └── NutritionController.java
+│   │   │   │                   │   ├── dto
+│   │   │   │                   │   │   ├── request
+│   │   │   │                   │   │   │   ├── CreateFoodRequest.java
+│   │   │   │                   │   │   │   ├── CreateMealPlanRequest.java
+│   │   │   │                   │   │   │   ├── CreateMealRequest.java
+│   │   │   │                   │   │   │   ├── LogWaterIntakeRequest.java
+│   │   │   │                   │   │   │   ├── MacroNutrientsDto.java
+│   │   │   │                   │   │   │   ├── MealFoodRequest.java
+│   │   │   │                   │   │   │   ├── UpdateFoodRequest.java
+│   │   │   │                   │   │   │   ├── UpdateMealPlanRequest.java
+│   │   │   │                   │   │   │   └── UpdateMealRequest.java
+│   │   │   │                   │   │   └── response
+│   │   │   │                   │   │       ├── DailyCaloriesDto.java
+│   │   │   │                   │   │       ├── DailyWaterIntakeResponse.java
+│   │   │   │                   │   │       ├── FoodResponse.java
+│   │   │   │                   │   │       ├── FoodShortResponse.java
+│   │   │   │                   │   │       ├── MealFoodResponse.java
+│   │   │   │                   │   │       ├── MealPlanResponse.java
+│   │   │   │                   │   │       ├── MealResponse.java
+│   │   │   │                   │   │       ├── NutritionStatisticsResponse.java
+│   │   │   │                   │   │       └── WaterIntakeResponse.java
+│   │   │   │                   │   ├── entity
+│   │   │   │                   │   │   ├── Food.java
+│   │   │   │                   │   │   ├── MacroNutrients.java
+│   │   │   │                   │   │   ├── Meal.java
+│   │   │   │                   │   │   ├── MealFood.java
+│   │   │   │                   │   │   ├── MealPlan.java
+│   │   │   │                   │   │   └── WaterIntake.java
+│   │   │   │                   │   ├── enums
+│   │   │   │                   │   │   ├── MealType.java
+│   │   │   │                   │   │   └── ServingUnit.java
+│   │   │   │                   │   ├── mapper
+│   │   │   │                   │   │   ├── FoodMapper.java
+│   │   │   │                   │   │   ├── MealFoodMapper.java
+│   │   │   │                   │   │   ├── MealMapper.java
+│   │   │   │                   │   │   ├── MealPlanMapper.java
+│   │   │   │                   │   │   └── WaterIntakeMapper.java
+│   │   │   │                   │   ├── repository
+│   │   │   │                   │   │   ├── IFoodRepository.java
+│   │   │   │                   │   │   ├── IMealFoodRepository.java
+│   │   │   │                   │   │   ├── IMealPlanRepository.java
+│   │   │   │                   │   │   ├── IMealRepository.java
+│   │   │   │                   │   │   └── IWaterIntakeRepository.java
+│   │   │   │                   │   └── service
+│   │   │   │                   │       ├── IFoodService.java
+│   │   │   │                   │       ├── IMealPlanService.java
+│   │   │   │                   │       ├── IMealService.java
+│   │   │   │                   │       ├── impl
+│   │   │   │                   │       │   ├── FoodServiceImpl.java
+│   │   │   │                   │       │   ├── MealPlanServiceImpl.java
+│   │   │   │                   │       │   ├── MealServiceImpl.java
+│   │   │   │                   │       │   └── WaterIntakeServiceImpl.java
+│   │   │   │                   │       └── IWaterIntakeService.java
+│   │   │   │                   ├── progress
+│   │   │   │                   │   ├── controller
+│   │   │   │                   │   │   └── ProgressTrackingController.java
+│   │   │   │                   │   ├── dto
+│   │   │   │                   │   │   ├── request
+│   │   │   │                   │   │   │   ├── CreateBodyMeasurementRequest.java
+│   │   │   │                   │   │   │   ├── CreateGoalRequest.java
+│   │   │   │                   │   │   │   ├── CreatePersonalRecordRequest.java
+│   │   │   │                   │   │   │   ├── CreateProgressPhotoRequest.java
+│   │   │   │                   │   │   │   ├── UpdateBodyMeasurementRequest.java
+│   │   │   │                   │   │   │   ├── UpdateGoalProgressRequest.java
+│   │   │   │                   │   │   │   └── UpdateGoalRequest.java
+│   │   │   │                   │   │   └── response
+│   │   │   │                   │   │       ├── BodyMeasurementResponse.java
+│   │   │   │                   │   │       ├── BodyMeasurementShortResponse.java
+│   │   │   │                   │   │       ├── GoalResponse.java
+│   │   │   │                   │   │       ├── MeasurementHistoryResponse.java
+│   │   │   │                   │   │       ├── MeasurementTrendsDto.java
+│   │   │   │                   │   │       ├── PersonalRecordResponse.java
+│   │   │   │                   │   │       └── ProgressPhotoResponse.java
+│   │   │   │                   │   ├── entity
+│   │   │   │                   │   │   ├── BodyMeasurement.java
+│   │   │   │                   │   │   ├── Goal.java
+│   │   │   │                   │   │   ├── PersonalRecord.java
+│   │   │   │                   │   │   └── ProgressPhoto.java
+│   │   │   │                   │   ├── enums
+│   │   │   │                   │   │   ├── GoalStatus.java
+│   │   │   │                   │   │   ├── GoalType.java
+│   │   │   │                   │   │   ├── MeasurementType.java
+│   │   │   │                   │   │   ├── MeasurementUnit.java
+│   │   │   │                   │   │   ├── PersonalRecordUnit.java
+│   │   │   │                   │   │   ├── PhotoAngle.java
+│   │   │   │                   │   │   └── RecordType.java
+│   │   │   │                   │   ├── mapper
+│   │   │   │                   │   │   ├── BodyMeasurementMapper.java
+│   │   │   │                   │   │   ├── GoalMapper.java
+│   │   │   │                   │   │   ├── PersonalRecordMapper.java
+│   │   │   │                   │   │   └── ProgressPhotoMapper.java
+│   │   │   │                   │   ├── repository
+│   │   │   │                   │   │   ├── IBodyMeasurementRepository.java
+│   │   │   │                   │   │   ├── IGoalRepository.java
+│   │   │   │                   │   │   ├── IPersonalRecordRepository.java
+│   │   │   │                   │   │   └── IProgressPhotoRepository.java
+│   │   │   │                   │   └── service
+│   │   │   │                   │       ├── IBodyMeasurementService.java
+│   │   │   │                   │       ├── IGoalService.java
+│   │   │   │                   │       ├── impl
+│   │   │   │                   │       │   ├── BodyMeasurementServiceImpl.java
+│   │   │   │                   │       │   ├── GoalServiceImpl.java
+│   │   │   │                   │       │   ├── PersonalRecordServiceImpl.java
+│   │   │   │                   │       │   └── PhotoProgressServiceImpl.java
+│   │   │   │                   │       ├── IPersonalRecordService.java
+│   │   │   │                   │       └── IProgressPhotoService.java
+│   │   │   │                   ├── review
+│   │   │   │                   │   ├── controller
+│   │   │   │                   │   │   ├── AdminReviewController.java
+│   │   │   │                   │   │   ├── ClientReviewController.java
+│   │   │   │                   │   │   └── TrainerReviewController.java
+│   │   │   │                   │   ├── dto
+│   │   │   │                   │   │   ├── request
+│   │   │   │                   │   │   │   ├── AdminReviewFilterRequest.java
+│   │   │   │                   │   │   │   ├── CreateTrainerReviewRequest.java
+│   │   │   │                   │   │   │   ├── UpdateReviewVisibilityRequest.java
+│   │   │   │                   │   │   │   └── UpdateTrainerReviewRequest.java
+│   │   │   │                   │   │   └── response
+│   │   │   │                   │   │       ├── RatingDistributionDto.java
+│   │   │   │                   │   │       ├── TrainerReviewResponse.java
+│   │   │   │                   │   │       └── TrainerReviewSummaryResponse.java
+│   │   │   │                   │   ├── entity
+│   │   │   │                   │   │   └── TrainerReview.java
+│   │   │   │                   │   ├── event
+│   │   │   │                   │   │   └── ReviewModeratedEvent.java
+│   │   │   │                   │   ├── listener
+│   │   │   │                   │   │   └── ReviewModerationListener.java
+│   │   │   │                   │   ├── mapper
+│   │   │   │                   │   │   └── ReviewMapper.java
+│   │   │   │                   │   ├── repository
+│   │   │   │                   │   │   ├── IReviewRepository.java
+│   │   │   │                   │   │   └── projection
+│   │   │   │                   │   │       └── IReviewAggregationProjection.java
+│   │   │   │                   │   └── service
+│   │   │   │                   │       ├── IAdminReviewService.java
+│   │   │   │                   │       ├── IClientReviewService.java
+│   │   │   │                   │       ├── impl
+│   │   │   │                   │       │   ├── AdminReviewServiceImpl.java
+│   │   │   │                   │       │   ├── ClientReviewServiceImpl.java
+│   │   │   │                   │       │   └── TrainerReviewServiceImpl.java
+│   │   │   │                   │       └── ITrainerReviewService.java
+│   │   │   │                   ├── storage
+│   │   │   │                   │   ├── service
+│   │   │   │                   │   │   ├── IFileUploadService.java
+│   │   │   │                   │   │   └── impl
+│   │   │   │                   │   │       └── FileUploadServiceImpl.java
+│   │   │   │                   │   └── utils
+│   │   │   │                   │       └── FileHandlerUtils.java
+│   │   │   │                   ├── user
+│   │   │   │                   │   ├── controller
+│   │   │   │                   │   │   ├── ClientProfileController.java
+│   │   │   │                   │   │   ├── SpecializationController.java
+│   │   │   │                   │   │   ├── TrainerProfileController.java
+│   │   │   │                   │   │   └── UserController.java
+│   │   │   │                   │   ├── dto
+│   │   │   │                   │   │   ├── request
+│   │   │   │                   │   │   │   ├── CreateClientProfileRequest.java
+│   │   │   │                   │   │   │   ├── CreateSpecializationRequest.java
+│   │   │   │                   │   │   │   ├── CreateTrainerProfileRequest.java
+│   │   │   │                   │   │   │   ├── UpdateClientProfileRequest.java
+│   │   │   │                   │   │   │   ├── UpdateSpecializationRequest.java
+│   │   │   │                   │   │   │   └── UpdateTrainerProfileRequest.java
+│   │   │   │                   │   │   └── response
+│   │   │   │                   │   │       ├── ClientAnalyticsResponse.java
+│   │   │   │                   │   │       ├── ClientProfileResponse.java
+│   │   │   │                   │   │       ├── ClientShortResponse.java
+│   │   │   │                   │   │       ├── SpecializationResponse.java
+│   │   │   │                   │   │       ├── TrainerAnalyticsResponse.java
+│   │   │   │                   │   │       ├── TrainerAttendanceMetrics.java
+│   │   │   │                   │   │       ├── TrainerProfileResponse.java
+│   │   │   │                   │   │       ├── TrainerShortResponse.java
+│   │   │   │                   │   │       └── UserResponse.java
+│   │   │   │                   │   ├── entity
+│   │   │   │                   │   │   ├── ClientProfile.java
+│   │   │   │                   │   │   ├── Role.java
+│   │   │   │                   │   │   ├── Specialization.java
+│   │   │   │                   │   │   ├── TrainerProfile.java
+│   │   │   │                   │   │   └── User.java
+│   │   │   │                   │   ├── enums
+│   │   │   │                   │   │   ├── ClientGender.java
+│   │   │   │                   │   │   └── RoleName.java
+│   │   │   │                   │   ├── mapper
+│   │   │   │                   │   │   ├── ClientProfileMapper.java
+│   │   │   │                   │   │   ├── SpecializationMapper.java
+│   │   │   │                   │   │   ├── TrainerProfileMapper.java
+│   │   │   │                   │   │   └── UserMapper.java
+│   │   │   │                   │   ├── repository
+│   │   │   │                   │   │   ├── IClientProfileRepository.java
+│   │   │   │                   │   │   ├── IRoleRepository.java
+│   │   │   │                   │   │   ├── ISpecializationRepository.java
+│   │   │   │                   │   │   ├── ITrainerProfileRepository.java
+│   │   │   │                   │   │   └── IUserRepository.java
+│   │   │   │                   │   ├── service
+│   │   │   │                   │   │   ├── IClientProfileService.java
+│   │   │   │                   │   │   ├── impl
+│   │   │   │                   │   │   │   ├── ClientProfileServiceImpl.java
+│   │   │   │                   │   │   │   ├── SpecializationServiceImpl.java
+│   │   │   │                   │   │   │   ├── TrainerProfileServiceImpl.java
+│   │   │   │                   │   │   │   └── UserServiceImpl.java
+│   │   │   │                   │   │   ├── ISpecializationService.java
+│   │   │   │                   │   │   ├── ITrainerProfileService.java
+│   │   │   │                   │   │   └── IUserService.java
+│   │   │   │                   │   └── utils
+│   │   │   │                   │       └── ClientProfileUtils.java
+│   │   │   │                   └── workout
+│   │   │   │                       ├── controller
+│   │   │   │                       │   ├── AttendanceController.java
+│   │   │   │                       │   ├── ExerciseController.java
+│   │   │   │                       │   ├── TrainingSessionController.java
+│   │   │   │                       │   ├── WaitlistController.java
+│   │   │   │                       │   ├── WorkoutLogController.java
+│   │   │   │                       │   └── WorkoutPlanController.java
+│   │   │   │                       ├── dto
+│   │   │   │                       │   ├── request
+│   │   │   │                       │   │   ├── AddExerciseToPlanRequest.java
+│   │   │   │                       │   │   ├── AssignWorkoutPlanRequest.java
+│   │   │   │                       │   │   ├── CheckInTrainingSessionRequest.java
+│   │   │   │                       │   │   ├── CreateExerciseRequest.java
+│   │   │   │                       │   │   ├── CreateTrainingSessionRequest.java
+│   │   │   │                       │   │   ├── CreateWorkoutPlanRequest.java
+│   │   │   │                       │   │   ├── LogWorkoutRequest.java
+│   │   │   │                       │   │   ├── ReorderWorkoutPlanExerciseItem.java
+│   │   │   │                       │   │   ├── ReorderWorkoutPlanExerciseRequest.java
+│   │   │   │                       │   │   ├── UpdateExerciseRequest.java
+│   │   │   │                       │   │   ├── UpdateLogWorkoutRequest.java
+│   │   │   │                       │   │   ├── UpdatePlanExerciseRequest.java
+│   │   │   │                       │   │   ├── UpdateTrainingSessionRequest.java
+│   │   │   │                       │   │   ├── UpdateWorkoutPlanRequest.java
+│   │   │   │                       │   │   └── WorkoutExerciseDetailsRequest.java
+│   │   │   │                       │   └── response
+│   │   │   │                       │       ├── AttendanceResponse.java
+│   │   │   │                       │       ├── AttendanceSessionResponse.java
+│   │   │   │                       │       ├── AttendanceStatsResponse.java
+│   │   │   │                       │       ├── CheckInResponse.java
+│   │   │   │                       │       ├── ClientWorkoutPlanResponse.java
+│   │   │   │                       │       ├── ExerciseResponse.java
+│   │   │   │                       │       ├── ExerciseShortResponse.java
+│   │   │   │                       │       ├── SessionShortResponse.java
+│   │   │   │                       │       ├── TrainingSessionResponse.java
+│   │   │   │                       │       ├── WaitlistResponse.java
+│   │   │   │                       │       ├── WorkoutLogResponse.java
+│   │   │   │                       │       ├── WorkoutPlanExerciseResponse.java
+│   │   │   │                       │       ├── WorkoutPlanResponse.java
+│   │   │   │                       │       └── WorkoutPlanShortResponse.java
+│   │   │   │                       ├── entity
+│   │   │   │                       │   ├── Attendance.java
+│   │   │   │                       │   ├── ClientWorkoutPlan.java
+│   │   │   │                       │   ├── Exercise.java
+│   │   │   │                       │   ├── SessionWaitlist.java
+│   │   │   │                       │   ├── TrainingSession.java
+│   │   │   │                       │   ├── WorkoutLog.java
+│   │   │   │                       │   ├── WorkoutPlan.java
+│   │   │   │                       │   └── WorkoutPlanExercise.java
+│   │   │   │                       ├── enums
+│   │   │   │                       │   ├── ClientWorkoutStatus.java
+│   │   │   │                       │   ├── DifficultyLevel.java
+│   │   │   │                       │   ├── ExerciseCategory.java
+│   │   │   │                       │   ├── MuscleGroup.java
+│   │   │   │                       │   ├── TrainingStatus.java
+│   │   │   │                       │   ├── TrainingType.java
+│   │   │   │                       │   └── WaitlistStatus.java
+│   │   │   │                       ├── mapper
+│   │   │   │                       │   ├── AttendanceMapper.java
+│   │   │   │                       │   ├── ClientWorkoutPlanMapper.java
+│   │   │   │                       │   ├── ExerciseMapper.java
+│   │   │   │                       │   ├── TrainingSessionMapper.java
+│   │   │   │                       │   ├── WaitlistMapper.java
+│   │   │   │                       │   ├── WorkoutLogMapper.java
+│   │   │   │                       │   ├── WorkoutPlanExerciseMapper.java
+│   │   │   │                       │   └── WorkoutPlanMapper.java
+│   │   │   │                       ├── repository
+│   │   │   │                       │   ├── IAttendanceRepository.java
+│   │   │   │                       │   ├── IClientWorkoutPlanRepository.java
+│   │   │   │                       │   ├── IExerciseRepository.java
+│   │   │   │                       │   ├── ITrainingSessionRepository.java
+│   │   │   │                       │   ├── IWaitlistRepository.java
+│   │   │   │                       │   ├── IWorkoutLogRepository.java
+│   │   │   │                       │   ├── IWorkoutPlanExerciseRepository.java
+│   │   │   │                       │   └── IWorkoutPlanRepository.java
+│   │   │   │                       ├── service
+│   │   │   │                       │   ├── IAttendanceService.java
+│   │   │   │                       │   ├── IClientWorkoutPlanService.java
+│   │   │   │                       │   ├── IExerciseService.java
+│   │   │   │                       │   ├── impl
+│   │   │   │                       │   │   ├── AttendanceServiceImpl.java
+│   │   │   │                       │   │   ├── ClientWorkoutPlanServiceImpl.java
+│   │   │   │                       │   │   ├── ExerciseServiceImpl.java
+│   │   │   │                       │   │   ├── TrainingSessionServiceImpl.java
+│   │   │   │                       │   │   ├── WaitlistServiceImpl.java
+│   │   │   │                       │   │   ├── WorkoutLogServiceImpl.java
+│   │   │   │                       │   │   ├── WorkoutPlanExerciseServiceImpl.java
+│   │   │   │                       │   │   └── WorkoutPlanServiceImpl.java
+│   │   │   │                       │   ├── ITrainingSessionService.java
+│   │   │   │                       │   ├── IWaitlistService.java
+│   │   │   │                       │   ├── IWorkoutLogService.java
+│   │   │   │                       │   ├── IWorkoutPlanExerciseService.java
+│   │   │   │                       │   └── IWorkoutPlanService.java
+│   │   │   │                       └── validator
+│   │   │   │                           └── TrainingSessionValidator.java
+│   │   │   └── resources
+│   │   │       ├── application-dev.yaml
+│   │   │       ├── application-prod.yaml
+│   │   │       ├── application-test.yaml
+│   │   │       ├── application.yaml
+│   │   │       ├── db
+│   │   │       │   └── migration
+│   │   │       │       ├── V1__create_auth_tables.sql
+│   │   │       │       ├── V10__seed_all_tables.sql
+│   │   │       │       ├── V11__add_extended_seed_data.sql
+│   │   │       │       ├── V12__reseed_all_uuid.sql
+│   │   │       │       ├── V13__add_crypto_payment_fields.sql
+│   │   │       │       ├── V14__create_notifications_table.sql
+│   │   │       │       ├── V15__seed_notifications.sql
+│   │   │       │       ├── V16__fix_notification_types.sql
+│   │   │       │       ├── V17__create_trainer_review_tables.sql
+│   │   │       │       ├── V18__seed_trainer_reviews.sql
+│   │   │       │       ├── V19__add_visibility_to_reviews.sql
+│   │   │       │       ├── V2__create_profile_tables.sql
+│   │   │       │       ├── V20__create_session_waitlist_tables.sql
+│   │   │       │       ├── V21__add_telegram_chat_id_to_users.sql
+│   │   │       │       ├── V22__add_test_data.sql
+│   │   │       │       ├── V23__seed_new_users_profiles.sql
+│   │   │       │       ├── V24__seed_memberships_payments.sql
+│   │   │       │       ├── V25__seed_sessions_attendances.sql
+│   │   │       │       ├── V26__seed_workout_plans_logs.sql
+│   │   │       │       ├── V27__seed_progress_data.sql
+│   │   │       │       ├── V28__seed_nutrition_data.sql
+│   │   │       │       ├── V29__seed_notifications_reviews.sql
+│   │   │       │       ├── V3__create_membership_payment_tables.sql
+│   │   │       │       ├── V4__create_training_tables.sql
+│   │   │       │       ├── V5__create_exercise_workout_tables.sql
+│   │   │       │       ├── V6__create_health_tables.sql
+│   │   │       │       ├── V7__create_nutrition_tables.sql
+│   │   │       │       ├── V8__create_utility_tables.sql
+│   │   │       │       └── V9__insert_default_data.sql
+│   │   │       └── keys
+│   │   │           └── local-only
+│   │   │               ├── private_key.pem
+│   │   │               └── public_key.pem
+│   │   └── test
+│   │       └── java
+│   │           └── com
+│   │               └── dev
+│   │                   └── quikkkk
+│   │                       ├── config
+│   │                       │   ├── TestCacheConfig.java
+│   │                       │   └── TestSecurityConfig.java
+│   │                       ├── controller
+│   │                       │   ├── AuthenticationControllerTest.java
+│   │                       │   ├── ClientReviewControllerTest.java
+│   │                       │   ├── ExerciseControllerTest.java
+│   │                       │   ├── MembershipControllerTest.java
+│   │                       │   ├── NotificationControllerTest.java
+│   │                       │   ├── NutritionControllerTest.java
+│   │                       │   ├── PaymentControllerTest.java
+│   │                       │   ├── ProgressTrackingControllerTest.java
+│   │                       │   └── TrainingSessionControllerTest.java
+│   │                       ├── FitHubApplicationTests.java
+│   │                       ├── fixtures
+│   │                       │   └── TestFixtures.java
+│   │                       ├── integration
+│   │                       │   └── AbstractIntegrationTest.java
+│   │                       ├── repository
+│   │                       │   ├── ClientProfileRepositoryTest.java
+│   │                       │   ├── ExerciseRepositoryTest.java
+│   │                       │   ├── FoodRepositoryTest.java
+│   │                       │   ├── GoalRepositoryTest.java
+│   │                       │   ├── MembershipRepositoryTest.java
+│   │                       │   ├── NotificationRepositoryTest.java
+│   │                       │   ├── PaymentRepositoryTest.java
+│   │                       │   ├── ReviewRepositoryTest.java
+│   │                       │   ├── TrainingSessionRepositoryTest.java
+│   │                       │   └── UserRepositoryTest.java
+│   │                       ├── service
+│   │                       │   ├── AccountActionServiceImplTest.java
+│   │                       │   ├── AdminReviewServiceImplTest.java
+│   │                       │   ├── AppBootstrapServiceImplTest.java
+│   │                       │   ├── AuthenticationServiceImplTest.java
+│   │                       │   ├── BodyMeasurementServiceImplTest.java
+│   │                       │   ├── ClientProfileServiceImplTest.java
+│   │                       │   ├── ClientReviewServiceImplTest.java
+│   │                       │   ├── ExerciseServiceImplTest.java
+│   │                       │   ├── FoodServiceImplTest.java
+│   │                       │   ├── GoalServiceImplTest.java
+│   │                       │   ├── MealPlanServiceImplTest.java
+│   │                       │   ├── MembershipServiceImplTest.java
+│   │                       │   ├── NotificationRealtimeServiceImplTest.java
+│   │                       │   ├── NotificationServiceImplTest.java
+│   │                       │   ├── PaymentServiceImplTest.java
+│   │                       │   ├── PersonalRecordServiceImplTest.java
+│   │                       │   ├── ReviewModerationListenerTest.java
+│   │                       │   ├── SessionLockServiceImplTest.java
+│   │                       │   ├── SpecializationServiceImplTest.java
+│   │                       │   ├── TokenBlacklistServiceImplTest.java
+│   │                       │   ├── TrainerProfileServiceImplTest.java
+│   │                       │   ├── TrainingSessionServiceImplTest.java
+│   │                       │   ├── UserServiceImplTest.java
+│   │                       │   ├── WaitlistServiceImplTest.java
+│   │                       │   ├── WorkoutLogServiceImplTest.java
+│   │                       │   └── WorkoutPlanServiceImplTest.java
+│   │                       └── validation
+│   │                           └── PasswordMatchesValidatorTest.java
+│   └── target
+│       ├── classes
+│       │   ├── application-dev.yaml
+│       │   ├── application-prod.yaml
+│       │   ├── application-test.yaml
+│       │   ├── application.yaml
+│       │   ├── com
+│       │   │   └── dev
+│       │   │       └── quikkkk
+│       │   │           ├── core
+│       │   │           │   ├── config
+│       │   │           │   │   ├── AsyncConfig.class
+│       │   │           │   │   ├── BeansConfig.class
+│       │   │           │   │   ├── RedisConfig.class
+│       │   │           │   │   ├── RedisHealthIndicator.class
+│       │   │           │   │   ├── SecurityConfig.class
+│       │   │           │   │   ├── TimeConfig.class
+│       │   │           │   │   └── WebConfig.class
+│       │   │           │   ├── controller
+│       │   │           │   │   └── CacheManagementController.class
+│       │   │           │   ├── dto
+│       │   │           │   │   ├── ErrorResponse.class
+│       │   │           │   │   ├── ErrorResponse$ErrorResponseBuilder.class
+│       │   │           │   │   ├── ErrorResponse$ValidationError.class
+│       │   │           │   │   ├── ErrorResponse$ValidationError$ValidationErrorBuilder.class
+│       │   │           │   │   ├── MessageResponse.class
+│       │   │           │   │   ├── MessageResponse$MessageResponseBuilder.class
+│       │   │           │   │   ├── PageResponse.class
+│       │   │           │   │   └── PageResponse$PageResponseBuilder.class
+│       │   │           │   ├── entity
+│       │   │           │   │   ├── BaseEntity.class
+│       │   │           │   │   ├── BaseEntity$BaseEntityBuilder.class
+│       │   │           │   │   └── BaseEntity$BaseEntityBuilderImpl.class
+│       │   │           │   ├── enums
+│       │   │           │   │   └── ErrorCode.class
+│       │   │           │   ├── exception
+│       │   │           │   │   ├── BusinessException.class
+│       │   │           │   │   ├── DuplicateResourceException.class
+│       │   │           │   │   ├── EmailException.class
+│       │   │           │   │   ├── EmailRetryExhaustedException.class
+│       │   │           │   │   ├── EmailSendException.class
+│       │   │           │   │   ├── EmailTemplateException.class
+│       │   │           │   │   ├── GlobalExceptionHandler.class
+│       │   │           │   │   ├── InsufficientBalanceException.class
+│       │   │           │   │   ├── InvalidEmailAddressException.class
+│       │   │           │   │   ├── ResourceNotFoundException.class
+│       │   │           │   │   └── SpecificExceptionHandlers.class
+│       │   │           │   ├── functional
+│       │   │           │   │   ├── LockOperation.class
+│       │   │           │   │   └── MacroExtractor.class
+│       │   │           │   ├── mapper
+│       │   │           │   │   └── MessageMapper.class
+│       │   │           │   ├── metrics
+│       │   │           │   │   └── HikariMetricsJob.class
+│       │   │           │   ├── ratelimit
+│       │   │           │   │   ├── impl
+│       │   │           │   │   │   └── RateLimitServiceImpl.class
+│       │   │           │   │   └── IRateLimitService.class
+│       │   │           │   ├── security
+│       │   │           │   │   ├── ApplicationAuditorAware.class
+│       │   │           │   │   ├── JwtFilter.class
+│       │   │           │   │   ├── JwtKeyProvider.class
+│       │   │           │   │   ├── SecurityUser.class
+│       │   │           │   │   └── UserPrincipal.class
+│       │   │           │   ├── service
+│       │   │           │   │   ├── impl
+│       │   │           │   │   │   └── RedisCacheStatisticsServiceImpl.class
+│       │   │           │   │   └── IRedisCacheStatisticsService.class
+│       │   │           │   ├── utils
+│       │   │           │   │   ├── CacheWarmer.class
+│       │   │           │   │   ├── ClientIpUtils.class
+│       │   │           │   │   ├── KeyUtils.class
+│       │   │           │   │   ├── PaginationUtils.class
+│       │   │           │   │   ├── PerformanceMonitor.class
+│       │   │           │   │   ├── RateLimitInterceptor.class
+│       │   │           │   │   ├── RequestLoggingFilter.class
+│       │   │           │   │   ├── SecurityUtils.class
+│       │   │           │   │   ├── ServiceUtils.class
+│       │   │           │   │   └── TimeAgoFormatter.class
+│       │   │           │   └── validation
+│       │   │           │       ├── EmailDomainValidator.class
+│       │   │           │       ├── NonDisposableEmail.class
+│       │   │           │       ├── PasswordMatches.class
+│       │   │           │       ├── PasswordMatchesValidator.class
+│       │   │           │       └── ValidationPatterns.class
+│       │   │           ├── FitHubApplication.class
+│       │   │           └── modules
+│       │   │               ├── app
+│       │   │               │   ├── controller
+│       │   │               │   │   └── AppBoostrapController.class
+│       │   │               │   ├── dto
+│       │   │               │   │   ├── enums
+│       │   │               │   │   │   └── ProfileStatus.class
+│       │   │               │   │   └── response
+│       │   │               │   │       ├── AppBootstrapResponse.class
+│       │   │               │   │       └── AppBootstrapResponse$AppBootstrapResponseBuilder.class
+│       │   │               │   └── services
+│       │   │               │       ├── IAppBootstrapService.class
+│       │   │               │       └── impl
+│       │   │               │           └── AppBootstrapServiceImpl.class
+│       │   │               ├── auth
+│       │   │               │   ├── controller
+│       │   │               │   │   ├── AccountActionController.class
+│       │   │               │   │   └── AuthenticationController.class
+│       │   │               │   ├── dto
+│       │   │               │   │   ├── request
+│       │   │               │   │   │   ├── LoginRequest.class
+│       │   │               │   │   │   ├── LoginRequest$LoginRequestBuilder.class
+│       │   │               │   │   │   ├── RefreshTokenRequest.class
+│       │   │               │   │   │   ├── RefreshTokenRequest$RefreshTokenRequestBuilder.class
+│       │   │               │   │   │   ├── RegistrationRequest.class
+│       │   │               │   │   │   ├── RegistrationRequest$RegistrationRequestBuilder.class
+│       │   │               │   │   │   ├── ResetPasswordRequest.class
+│       │   │               │   │   │   └── ResetPasswordRequest$ResetPasswordRequestBuilder.class
+│       │   │               │   │   └── response
+│       │   │               │   │       ├── AuthenticationResponse.class
+│       │   │               │   │       └── AuthenticationResponse$AuthenticationResponseBuilder.class
+│       │   │               │   ├── entity
+│       │   │               │   │   ├── VerificationToken.class
+│       │   │               │   │   └── VerificationToken$VerificationTokenBuilder.class
+│       │   │               │   ├── enums
+│       │   │               │   │   ├── JwtTokenType.class
+│       │   │               │   │   └── TokenType.class
+│       │   │               │   ├── mapper
+│       │   │               │   │   ├── AuthenticationMapper.class
+│       │   │               │   │   └── VerificationTokenMapper.class
+│       │   │               │   ├── repository
+│       │   │               │   │   └── IVerificationTokenRepository.class
+│       │   │               │   ├── scheduler
+│       │   │               │   │   └── VerificationTokenCleanupJob.class
+│       │   │               │   └── service
+│       │   │               │       ├── IAccountActionService.class
+│       │   │               │       ├── IAuthenticationService.class
+│       │   │               │       ├── IJwtService.class
+│       │   │               │       ├── impl
+│       │   │               │       │   ├── AccountActionServiceImpl.class
+│       │   │               │       │   ├── AuthenticationServiceImpl.class
+│       │   │               │       │   ├── CustomUserDetailsServiceImpl.class
+│       │   │               │       │   ├── JwtServiceImpl.class
+│       │   │               │       │   ├── SessionLockServiceImpl.class
+│       │   │               │       │   ├── TokenBlacklistServiceImpl.class
+│       │   │               │       │   └── VerificationTokenServiceImpl.class
+│       │   │               │       ├── ISessionLockService.class
+│       │   │               │       ├── ITokenBlacklistService.class
+│       │   │               │       └── IVerificationTokenService.class
+│       │   │               ├── dashboard
+│       │   │               │   ├── controller
+│       │   │               │   │   └── DashboardController.class
+│       │   │               │   ├── dto
+│       │   │               │   │   ├── DashboardAnalyticsResponse.class
+│       │   │               │   │   ├── DashboardAnalyticsResponse$DashboardAnalyticsResponseBuilder.class
+│       │   │               │   │   ├── PopularSessionResponse.class
+│       │   │               │   │   └── PopularSessionResponse$PopularSessionResponseBuilder.class
+│       │   │               │   ├── mapper
+│       │   │               │   │   └── DashboardMapper.class
+│       │   │               │   └── service
+│       │   │               │       ├── IDashboardService.class
+│       │   │               │       └── impl
+│       │   │               │           └── DashboardServiceImpl.class
+│       │   │               ├── membership
+│       │   │               │   ├── controller
+│       │   │               │   │   ├── MembershipController.class
+│       │   │               │   │   └── PaymentController.class
+│       │   │               │   ├── dto
+│       │   │               │   │   ├── request
+│       │   │               │   │   │   ├── CreateMembershipRequest.class
+│       │   │               │   │   │   ├── CreateMembershipRequest$CreateMembershipRequestBuilder.class
+│       │   │               │   │   │   ├── CreatePaymentRequest.class
+│       │   │               │   │   │   ├── CreatePaymentRequest$CreatePaymentRequestBuilder.class
+│       │   │               │   │   │   ├── ExtendMembershipRequest.class
+│       │   │               │   │   │   └── ExtendMembershipRequest$ExtendMembershipRequestBuilder.class
+│       │   │               │   │   └── response
+│       │   │               │   │       ├── MembershipHistoryResponse.class
+│       │   │               │   │       ├── MembershipHistoryResponse$MembershipHistoryResponseBuilder.class
+│       │   │               │   │       ├── MembershipResponse.class
+│       │   │               │   │       ├── MembershipResponse$MembershipResponseBuilder.class
+│       │   │               │   │       ├── MembershipShortResponse.class
+│       │   │               │   │       ├── MembershipShortResponse$MembershipShortResponseBuilder.class
+│       │   │               │   │       ├── MembershipValidationResponse.class
+│       │   │               │   │       ├── MembershipValidationResponse$MembershipValidationResponseBuilder.class
+│       │   │               │   │       ├── PaymentResponse.class
+│       │   │               │   │       ├── PaymentResponse$PaymentResponseBuilder.class
+│       │   │               │   │       └── RevenueStatsResponse.class
+│       │   │               │   ├── entity
+│       │   │               │   │   ├── Membership.class
+│       │   │               │   │   ├── Membership$MembershipBuilder.class
+│       │   │               │   │   ├── Membership$MembershipBuilderImpl.class
+│       │   │               │   │   ├── Payment.class
+│       │   │               │   │   ├── Payment$PaymentBuilder.class
+│       │   │               │   │   └── Payment$PaymentBuilderImpl.class
+│       │   │               │   ├── enums
+│       │   │               │   │   ├── MembershipStatus.class
+│       │   │               │   │   ├── MembershipType.class
+│       │   │               │   │   ├── PaymentCurrency.class
+│       │   │               │   │   └── PaymentStatus.class
+│       │   │               │   ├── mapper
+│       │   │               │   │   ├── MembershipMapper.class
+│       │   │               │   │   └── PaymentMapper.class
+│       │   │               │   ├── repository
+│       │   │               │   │   ├── IMembershipRepository.class
+│       │   │               │   │   └── IPaymentRepository.class
+│       │   │               │   ├── scheduler
+│       │   │               │   │   └── MembershipExpirationJob.class
+│       │   │               │   ├── service
+│       │   │               │   │   ├── IMembershipService.class
+│       │   │               │   │   ├── impl
+│       │   │               │   │   │   ├── MembershipServiceImpl.class
+│       │   │               │   │   │   ├── MembershipServiceImpl$1.class
+│       │   │               │   │   │   ├── PaymentServiceImpl.class
+│       │   │               │   │   │   └── PaymentServiceImpl$1.class
+│       │   │               │   │   └── IPaymentService.class
+│       │   │               │   └── utils
+│       │   │               │       ├── CurrencyConverter.class
+│       │   │               │       └── TronPaymentValidator.class
+│       │   │               ├── notification
+│       │   │               │   ├── controller
+│       │   │               │   │   ├── NotificationController.class
+│       │   │               │   │   └── TelegramWebhookController.class
+│       │   │               │   ├── dto
+│       │   │               │   │   ├── request
+│       │   │               │   │   │   ├── BroadcastNotificationRequest.class
+│       │   │               │   │   │   ├── BroadcastNotificationRequest$BroadcastNotificationRequestBuilder.class
+│       │   │               │   │   │   ├── CreateNotificationRequest.class
+│       │   │               │   │   │   └── CreateNotificationRequest$CreateNotificationRequestBuilder.class
+│       │   │               │   │   ├── response
+│       │   │               │   │   │   ├── NotificationRealtimeEventResponse.class
+│       │   │               │   │   │   ├── NotificationRealtimeEventResponse$NotificationRealtimeEventResponseBuilder.class
+│       │   │               │   │   │   ├── NotificationResponse.class
+│       │   │               │   │   │   ├── NotificationResponse$NotificationResponseBuilder.class
+│       │   │               │   │   │   ├── NotificationSummaryResponse.class
+│       │   │               │   │   │   └── NotificationSummaryResponse$NotificationSummaryResponseBuilder.class
+│       │   │               │   │   └── telegram
+│       │   │               │   │       ├── TelegramChat.class
+│       │   │               │   │       ├── TelegramMessage.class
+│       │   │               │   │       └── TelegramUpdate.class
+│       │   │               │   ├── entity
+│       │   │               │   │   ├── EmailFailureLog.class
+│       │   │               │   │   ├── EmailFailureLog$EmailFailureLogBuilder.class
+│       │   │               │   │   ├── EmailFailureLog$EmailFailureLogBuilderImpl.class
+│       │   │               │   │   ├── Notification.class
+│       │   │               │   │   ├── Notification$NotificationBuilder.class
+│       │   │               │   │   └── Notification$NotificationBuilderImpl.class
+│       │   │               │   ├── enums
+│       │   │               │   │   ├── EmailType.class
+│       │   │               │   │   ├── NotificationPriority.class
+│       │   │               │   │   └── NotificationType.class
+│       │   │               │   ├── event
+│       │   │               │   │   ├── NotificationEvent.class
+│       │   │               │   │   └── NotificationEvent$NotificationEventBuilder.class
+│       │   │               │   ├── listener
+│       │   │               │   │   ├── NotificationEventListener.class
+│       │   │               │   │   └── NotificationEventListener$1.class
+│       │   │               │   ├── mapper
+│       │   │               │   │   └── NotificationMapper.class
+│       │   │               │   ├── realtime
+│       │   │               │   │   ├── impl
+│       │   │               │   │   │   └── NotificationRealtimeServiceImpl.class
+│       │   │               │   │   └── INotificationRealtimeService.class
+│       │   │               │   ├── repository
+│       │   │               │   │   ├── IEmailFailureLogRepository.class
+│       │   │               │   │   └── INotificationRepository.class
+│       │   │               │   ├── scheduler
+│       │   │               │   │   ├── NotificationCleanupJob.class
+│       │   │               │   │   └── NotificationHeartbeatJob.class
+│       │   │               │   └── service
+│       │   │               │       ├── IEmailService.class
+│       │   │               │       ├── impl
+│       │   │               │       │   ├── EmailServiceImpl.class
+│       │   │               │       │   ├── NotificationServiceImpl.class
+│       │   │               │       │   ├── TelegramNotificationServiceImpl.class
+│       │   │               │       │   └── TelegramWebhookServiceImpl.class
+│       │   │               │       ├── INotificationService.class
+│       │   │               │       ├── ITelegramNotificationService.class
+│       │   │               │       └── ITelegramWebhookService.class
+│       │   │               ├── nutrition
+│       │   │               │   ├── controller
+│       │   │               │   │   └── NutritionController.class
+│       │   │               │   ├── dto
+│       │   │               │   │   ├── request
+│       │   │               │   │   │   ├── CreateFoodRequest.class
+│       │   │               │   │   │   ├── CreateFoodRequest$CreateFoodRequestBuilder.class
+│       │   │               │   │   │   ├── CreateMealPlanRequest.class
+│       │   │               │   │   │   ├── CreateMealPlanRequest$CreateMealPlanRequestBuilder.class
+│       │   │               │   │   │   ├── CreateMealRequest.class
+│       │   │               │   │   │   ├── CreateMealRequest$CreateMealRequestBuilder.class
+│       │   │               │   │   │   ├── LogWaterIntakeRequest.class
+│       │   │               │   │   │   ├── LogWaterIntakeRequest$LogWaterIntakeRequestBuilder.class
+│       │   │               │   │   │   ├── MacroNutrientsDto.class
+│       │   │               │   │   │   ├── MacroNutrientsDto$MacroNutrientsDtoBuilder.class
+│       │   │               │   │   │   ├── MealFoodRequest.class
+│       │   │               │   │   │   ├── MealFoodRequest$MealFoodRequestBuilder.class
+│       │   │               │   │   │   ├── UpdateFoodRequest.class
+│       │   │               │   │   │   ├── UpdateFoodRequest$UpdateFoodRequestBuilder.class
+│       │   │               │   │   │   ├── UpdateMealPlanRequest.class
+│       │   │               │   │   │   ├── UpdateMealPlanRequest$UpdateMealPlanRequestBuilder.class
+│       │   │               │   │   │   ├── UpdateMealRequest.class
+│       │   │               │   │   │   └── UpdateMealRequest$UpdateMealRequestBuilder.class
+│       │   │               │   │   └── response
+│       │   │               │   │       ├── DailyCaloriesDto.class
+│       │   │               │   │       ├── DailyCaloriesDto$DailyCaloriesDtoBuilder.class
+│       │   │               │   │       ├── DailyWaterIntakeResponse.class
+│       │   │               │   │       ├── DailyWaterIntakeResponse$DailyWaterIntakeResponseBuilder.class
+│       │   │               │   │       ├── FoodResponse.class
+│       │   │               │   │       ├── FoodResponse$FoodResponseBuilder.class
+│       │   │               │   │       ├── FoodShortResponse.class
+│       │   │               │   │       ├── FoodShortResponse$FoodShortResponseBuilder.class
+│       │   │               │   │       ├── MealFoodResponse.class
+│       │   │               │   │       ├── MealFoodResponse$MealFoodResponseBuilder.class
+│       │   │               │   │       ├── MealPlanResponse.class
+│       │   │               │   │       ├── MealPlanResponse$MealPlanResponseBuilder.class
+│       │   │               │   │       ├── MealResponse.class
+│       │   │               │   │       ├── MealResponse$MealResponseBuilder.class
+│       │   │               │   │       ├── NutritionStatisticsResponse.class
+│       │   │               │   │       ├── NutritionStatisticsResponse$NutritionStatisticsResponseBuilder.class
+│       │   │               │   │       ├── WaterIntakeResponse.class
+│       │   │               │   │       └── WaterIntakeResponse$WaterIntakeResponseBuilder.class
+│       │   │               │   ├── entity
+│       │   │               │   │   ├── Food.class
+│       │   │               │   │   ├── Food$FoodBuilder.class
+│       │   │               │   │   ├── Food$FoodBuilderImpl.class
+│       │   │               │   │   ├── MacroNutrients.class
+│       │   │               │   │   ├── MacroNutrients$MacroNutrientsBuilder.class
+│       │   │               │   │   ├── Meal.class
+│       │   │               │   │   ├── Meal$MealBuilder.class
+│       │   │               │   │   ├── Meal$MealBuilderImpl.class
+│       │   │               │   │   ├── MealFood.class
+│       │   │               │   │   ├── MealFood$MealFoodBuilder.class
+│       │   │               │   │   ├── MealFood$MealFoodBuilderImpl.class
+│       │   │               │   │   ├── MealPlan.class
+│       │   │               │   │   ├── MealPlan$MealPlanBuilder.class
+│       │   │               │   │   ├── MealPlan$MealPlanBuilderImpl.class
+│       │   │               │   │   ├── WaterIntake.class
+│       │   │               │   │   ├── WaterIntake$WaterIntakeBuilder.class
+│       │   │               │   │   └── WaterIntake$WaterIntakeBuilderImpl.class
+│       │   │               │   ├── enums
+│       │   │               │   │   ├── MealType.class
+│       │   │               │   │   └── ServingUnit.class
+│       │   │               │   ├── mapper
+│       │   │               │   │   ├── FoodMapper.class
+│       │   │               │   │   ├── MealFoodMapper.class
+│       │   │               │   │   ├── MealMapper.class
+│       │   │               │   │   ├── MealPlanMapper.class
+│       │   │               │   │   └── WaterIntakeMapper.class
+│       │   │               │   ├── repository
+│       │   │               │   │   ├── IFoodRepository.class
+│       │   │               │   │   ├── IMealFoodRepository.class
+│       │   │               │   │   ├── IMealPlanRepository.class
+│       │   │               │   │   ├── IMealRepository.class
+│       │   │               │   │   └── IWaterIntakeRepository.class
+│       │   │               │   └── service
+│       │   │               │       ├── IFoodService.class
+│       │   │               │       ├── IMealPlanService.class
+│       │   │               │       ├── IMealService.class
+│       │   │               │       ├── impl
+│       │   │               │       │   ├── FoodServiceImpl.class
+│       │   │               │       │   ├── MealPlanServiceImpl.class
+│       │   │               │       │   ├── MealServiceImpl.class
+│       │   │               │       │   └── WaterIntakeServiceImpl.class
+│       │   │               │       └── IWaterIntakeService.class
+│       │   │               ├── progress
+│       │   │               │   ├── controller
+│       │   │               │   │   └── ProgressTrackingController.class
+│       │   │               │   ├── dto
+│       │   │               │   │   ├── request
+│       │   │               │   │   │   ├── CreateBodyMeasurementRequest.class
+│       │   │               │   │   │   ├── CreateBodyMeasurementRequest$CreateBodyMeasurementRequestBuilder.class
+│       │   │               │   │   │   ├── CreateGoalRequest.class
+│       │   │               │   │   │   ├── CreateGoalRequest$CreateGoalRequestBuilder.class
+│       │   │               │   │   │   ├── CreatePersonalRecordRequest.class
+│       │   │               │   │   │   ├── CreatePersonalRecordRequest$CreatePersonalRecordRequestBuilder.class
+│       │   │               │   │   │   ├── CreateProgressPhotoRequest.class
+│       │   │               │   │   │   ├── CreateProgressPhotoRequest$CreateProgressPhotoRequestBuilder.class
+│       │   │               │   │   │   ├── UpdateBodyMeasurementRequest.class
+│       │   │               │   │   │   ├── UpdateBodyMeasurementRequest$UpdateBodyMeasurementRequestBuilder.class
+│       │   │               │   │   │   ├── UpdateGoalProgressRequest.class
+│       │   │               │   │   │   ├── UpdateGoalProgressRequest$UpdateGoalProgressRequestBuilder.class
+│       │   │               │   │   │   ├── UpdateGoalRequest.class
+│       │   │               │   │   │   └── UpdateGoalRequest$UpdateGoalRequestBuilder.class
+│       │   │               │   │   └── response
+│       │   │               │   │       ├── BodyMeasurementResponse.class
+│       │   │               │   │       ├── BodyMeasurementResponse$BodyMeasurementResponseBuilder.class
+│       │   │               │   │       ├── BodyMeasurementShortResponse.class
+│       │   │               │   │       ├── BodyMeasurementShortResponse$BodyMeasurementShortResponseBuilder.class
+│       │   │               │   │       ├── GoalResponse.class
+│       │   │               │   │       ├── GoalResponse$GoalResponseBuilder.class
+│       │   │               │   │       ├── MeasurementHistoryResponse.class
+│       │   │               │   │       ├── MeasurementHistoryResponse$MeasurementHistoryResponseBuilder.class
+│       │   │               │   │       ├── MeasurementTrendsDto.class
+│       │   │               │   │       ├── MeasurementTrendsDto$MeasurementTrendsDtoBuilder.class
+│       │   │               │   │       ├── PersonalRecordResponse.class
+│       │   │               │   │       ├── PersonalRecordResponse$PersonalRecordResponseBuilder.class
+│       │   │               │   │       ├── ProgressPhotoResponse.class
+│       │   │               │   │       └── ProgressPhotoResponse$ProgressPhotoResponseBuilder.class
+│       │   │               │   ├── entity
+│       │   │               │   │   ├── BodyMeasurement.class
+│       │   │               │   │   ├── BodyMeasurement$BodyMeasurementBuilder.class
+│       │   │               │   │   ├── BodyMeasurement$BodyMeasurementBuilderImpl.class
+│       │   │               │   │   ├── Goal.class
+│       │   │               │   │   ├── Goal$GoalBuilder.class
+│       │   │               │   │   ├── Goal$GoalBuilderImpl.class
+│       │   │               │   │   ├── PersonalRecord.class
+│       │   │               │   │   ├── PersonalRecord$PersonalRecordBuilder.class
+│       │   │               │   │   ├── PersonalRecord$PersonalRecordBuilderImpl.class
+│       │   │               │   │   ├── ProgressPhoto.class
+│       │   │               │   │   ├── ProgressPhoto$ProgressPhotoBuilder.class
+│       │   │               │   │   └── ProgressPhoto$ProgressPhotoBuilderImpl.class
+│       │   │               │   ├── enums
+│       │   │               │   │   ├── GoalStatus.class
+│       │   │               │   │   ├── GoalType.class
+│       │   │               │   │   ├── MeasurementType.class
+│       │   │               │   │   ├── MeasurementUnit.class
+│       │   │               │   │   ├── PersonalRecordUnit.class
+│       │   │               │   │   ├── PhotoAngle.class
+│       │   │               │   │   └── RecordType.class
+│       │   │               │   ├── mapper
+│       │   │               │   │   ├── BodyMeasurementMapper.class
+│       │   │               │   │   ├── GoalMapper.class
+│       │   │               │   │   ├── PersonalRecordMapper.class
+│       │   │               │   │   └── ProgressPhotoMapper.class
+│       │   │               │   ├── repository
+│       │   │               │   │   ├── IBodyMeasurementRepository.class
+│       │   │               │   │   ├── IGoalRepository.class
+│       │   │               │   │   ├── IPersonalRecordRepository.class
+│       │   │               │   │   └── IProgressPhotoRepository.class
+│       │   │               │   └── service
+│       │   │               │       ├── IBodyMeasurementService.class
+│       │   │               │       ├── IGoalService.class
+│       │   │               │       ├── impl
+│       │   │               │       │   ├── BodyMeasurementServiceImpl.class
+│       │   │               │       │   ├── GoalServiceImpl.class
+│       │   │               │       │   ├── PersonalRecordServiceImpl.class
+│       │   │               │       │   └── PhotoProgressServiceImpl.class
+│       │   │               │       ├── IPersonalRecordService.class
+│       │   │               │       └── IProgressPhotoService.class
+│       │   │               ├── review
+│       │   │               │   ├── controller
+│       │   │               │   │   ├── AdminReviewController.class
+│       │   │               │   │   ├── ClientReviewController.class
+│       │   │               │   │   └── TrainerReviewController.class
+│       │   │               │   ├── dto
+│       │   │               │   │   ├── request
+│       │   │               │   │   │   ├── AdminReviewFilterRequest.class
+│       │   │               │   │   │   ├── AdminReviewFilterRequest$AdminReviewFilterRequestBuilder.class
+│       │   │               │   │   │   ├── CreateTrainerReviewRequest.class
+│       │   │               │   │   │   ├── CreateTrainerReviewRequest$CreateTrainerReviewRequestBuilder.class
+│       │   │               │   │   │   ├── UpdateReviewVisibilityRequest.class
+│       │   │               │   │   │   ├── UpdateReviewVisibilityRequest$UpdateReviewVisibilityRequestBuilder.class
+│       │   │               │   │   │   ├── UpdateTrainerReviewRequest.class
+│       │   │               │   │   │   └── UpdateTrainerReviewRequest$UpdateTrainerReviewRequestBuilder.class
+│       │   │               │   │   └── response
+│       │   │               │   │       ├── RatingDistributionDto.class
+│       │   │               │   │       ├── RatingDistributionDto$RatingDistributionDtoBuilder.class
+│       │   │               │   │       ├── TrainerReviewResponse.class
+│       │   │               │   │       ├── TrainerReviewResponse$TrainerReviewResponseBuilder.class
+│       │   │               │   │       ├── TrainerReviewSummaryResponse.class
+│       │   │               │   │       └── TrainerReviewSummaryResponse$TrainerReviewSummaryResponseBuilder.class
+│       │   │               │   ├── entity
+│       │   │               │   │   ├── TrainerReview.class
+│       │   │               │   │   ├── TrainerReview$TrainerReviewBuilder.class
+│       │   │               │   │   └── TrainerReview$TrainerReviewBuilderImpl.class
+│       │   │               │   ├── event
+│       │   │               │   │   └── ReviewModeratedEvent.class
+│       │   │               │   ├── listener
+│       │   │               │   │   └── ReviewModerationListener.class
+│       │   │               │   ├── mapper
+│       │   │               │   │   └── ReviewMapper.class
+│       │   │               │   ├── repository
+│       │   │               │   │   ├── IReviewRepository.class
+│       │   │               │   │   └── projection
+│       │   │               │   │       └── IReviewAggregationProjection.class
+│       │   │               │   └── service
+│       │   │               │       ├── IAdminReviewService.class
+│       │   │               │       ├── IClientReviewService.class
+│       │   │               │       ├── impl
+│       │   │               │       │   ├── AdminReviewServiceImpl.class
+│       │   │               │       │   ├── ClientReviewServiceImpl.class
+│       │   │               │       │   └── TrainerReviewServiceImpl.class
+│       │   │               │       └── ITrainerReviewService.class
+│       │   │               ├── storage
+│       │   │               │   ├── service
+│       │   │               │   │   ├── IFileUploadService.class
+│       │   │               │   │   └── impl
+│       │   │               │   │       └── FileUploadServiceImpl.class
+│       │   │               │   └── utils
+│       │   │               │       ├── FileHandlerUtils.class
+│       │   │               │       ├── FileHandlerUtils$1.class
+│       │   │               │       └── FileHandlerUtils$2.class
+│       │   │               ├── user
+│       │   │               │   ├── controller
+│       │   │               │   │   ├── ClientProfileController.class
+│       │   │               │   │   ├── SpecializationController.class
+│       │   │               │   │   ├── TrainerProfileController.class
+│       │   │               │   │   └── UserController.class
+│       │   │               │   ├── dto
+│       │   │               │   │   ├── request
+│       │   │               │   │   │   ├── CreateClientProfileRequest.class
+│       │   │               │   │   │   ├── CreateClientProfileRequest$CreateClientProfileRequestBuilder.class
+│       │   │               │   │   │   ├── CreateSpecializationRequest.class
+│       │   │               │   │   │   ├── CreateSpecializationRequest$CreateSpecializationRequestBuilder.class
+│       │   │               │   │   │   ├── CreateTrainerProfileRequest.class
+│       │   │               │   │   │   ├── CreateTrainerProfileRequest$CreateTrainerProfileRequestBuilder.class
+│       │   │               │   │   │   ├── UpdateClientProfileRequest.class
+│       │   │               │   │   │   ├── UpdateClientProfileRequest$UpdateClientProfileRequestBuilder.class
+│       │   │               │   │   │   ├── UpdateSpecializationRequest.class
+│       │   │               │   │   │   ├── UpdateSpecializationRequest$UpdateSpecializationRequestBuilder.class
+│       │   │               │   │   │   ├── UpdateTrainerProfileRequest.class
+│       │   │               │   │   │   └── UpdateTrainerProfileRequest$UpdateTrainerProfileRequestBuilder.class
+│       │   │               │   │   └── response
+│       │   │               │   │       ├── ClientAnalyticsResponse.class
+│       │   │               │   │       ├── ClientAnalyticsResponse$ClientAnalyticsResponseBuilder.class
+│       │   │               │   │       ├── ClientProfileResponse.class
+│       │   │               │   │       ├── ClientProfileResponse$ClientProfileResponseBuilder.class
+│       │   │               │   │       ├── ClientShortResponse.class
+│       │   │               │   │       ├── ClientShortResponse$ClientShortResponseBuilder.class
+│       │   │               │   │       ├── SpecializationResponse.class
+│       │   │               │   │       ├── SpecializationResponse$SpecializationResponseBuilder.class
+│       │   │               │   │       ├── TrainerAnalyticsResponse.class
+│       │   │               │   │       ├── TrainerAnalyticsResponse$TrainerAnalyticsResponseBuilder.class
+│       │   │               │   │       ├── TrainerAttendanceMetrics.class
+│       │   │               │   │       ├── TrainerAttendanceMetrics$TrainerAttendanceMetricsBuilder.class
+│       │   │               │   │       ├── TrainerProfileResponse.class
+│       │   │               │   │       ├── TrainerProfileResponse$TrainerProfileResponseBuilder.class
+│       │   │               │   │       ├── TrainerShortResponse.class
+│       │   │               │   │       ├── TrainerShortResponse$TrainerShortResponseBuilder.class
+│       │   │               │   │       ├── UserResponse.class
+│       │   │               │   │       └── UserResponse$UserResponseBuilder.class
+│       │   │               │   ├── entity
+│       │   │               │   │   ├── ClientProfile.class
+│       │   │               │   │   ├── ClientProfile$ClientProfileBuilder.class
+│       │   │               │   │   ├── ClientProfile$ClientProfileBuilderImpl.class
+│       │   │               │   │   ├── Role.class
+│       │   │               │   │   ├── Role$RoleBuilder.class
+│       │   │               │   │   ├── Role$RoleBuilderImpl.class
+│       │   │               │   │   ├── Specialization.class
+│       │   │               │   │   ├── Specialization$SpecializationBuilder.class
+│       │   │               │   │   ├── TrainerProfile.class
+│       │   │               │   │   ├── TrainerProfile$TrainerProfileBuilder.class
+│       │   │               │   │   ├── TrainerProfile$TrainerProfileBuilderImpl.class
+│       │   │               │   │   ├── User.class
+│       │   │               │   │   ├── User$UserBuilder.class
+│       │   │               │   │   └── User$UserBuilderImpl.class
+│       │   │               │   ├── enums
+│       │   │               │   │   ├── ClientGender.class
+│       │   │               │   │   └── RoleName.class
+│       │   │               │   ├── mapper
+│       │   │               │   │   ├── ClientProfileMapper.class
+│       │   │               │   │   ├── SpecializationMapper.class
+│       │   │               │   │   ├── TrainerProfileMapper.class
+│       │   │               │   │   └── UserMapper.class
+│       │   │               │   ├── repository
+│       │   │               │   │   ├── IClientProfileRepository.class
+│       │   │               │   │   ├── IRoleRepository.class
+│       │   │               │   │   ├── ISpecializationRepository.class
+│       │   │               │   │   ├── ITrainerProfileRepository.class
+│       │   │               │   │   └── IUserRepository.class
+│       │   │               │   ├── service
+│       │   │               │   │   ├── IClientProfileService.class
+│       │   │               │   │   ├── impl
+│       │   │               │   │   │   ├── ClientProfileServiceImpl.class
+│       │   │               │   │   │   ├── SpecializationServiceImpl.class
+│       │   │               │   │   │   ├── TrainerProfileServiceImpl.class
+│       │   │               │   │   │   └── UserServiceImpl.class
+│       │   │               │   │   ├── ISpecializationService.class
+│       │   │               │   │   ├── ITrainerProfileService.class
+│       │   │               │   │   └── IUserService.class
+│       │   │               │   └── utils
+│       │   │               │       └── ClientProfileUtils.class
+│       │   │               └── workout
+│       │   │                   ├── controller
+│       │   │                   │   ├── AttendanceController.class
+│       │   │                   │   ├── ExerciseController.class
+│       │   │                   │   ├── TrainingSessionController.class
+│       │   │                   │   ├── WaitlistController.class
+│       │   │                   │   ├── WorkoutLogController.class
+│       │   │                   │   └── WorkoutPlanController.class
+│       │   │                   ├── dto
+│       │   │                   │   ├── request
+│       │   │                   │   │   ├── AddExerciseToPlanRequest.class
+│       │   │                   │   │   ├── AddExerciseToPlanRequest$AddExerciseToPlanRequestBuilder.class
+│       │   │                   │   │   ├── AssignWorkoutPlanRequest.class
+│       │   │                   │   │   ├── AssignWorkoutPlanRequest$AssignWorkoutPlanRequestBuilder.class
+│       │   │                   │   │   ├── CheckInTrainingSessionRequest.class
+│       │   │                   │   │   ├── CheckInTrainingSessionRequest$CheckInTrainingSessionRequestBuilder.class
+│       │   │                   │   │   ├── CreateExerciseRequest.class
+│       │   │                   │   │   ├── CreateExerciseRequest$CreateExerciseRequestBuilder.class
+│       │   │                   │   │   ├── CreateTrainingSessionRequest.class
+│       │   │                   │   │   ├── CreateTrainingSessionRequest$CreateTrainingSessionRequestBuilder.class
+│       │   │                   │   │   ├── CreateWorkoutPlanRequest.class
+│       │   │                   │   │   ├── CreateWorkoutPlanRequest$CreateWorkoutPlanRequestBuilder.class
+│       │   │                   │   │   ├── LogWorkoutRequest.class
+│       │   │                   │   │   ├── LogWorkoutRequest$LogWorkoutRequestBuilder.class
+│       │   │                   │   │   ├── ReorderWorkoutPlanExerciseItem.class
+│       │   │                   │   │   ├── ReorderWorkoutPlanExerciseItem$ReorderWorkoutPlanExerciseItemBuilder.class
+│       │   │                   │   │   ├── ReorderWorkoutPlanExerciseRequest.class
+│       │   │                   │   │   ├── ReorderWorkoutPlanExerciseRequest$ReorderWorkoutPlanExerciseRequestBuilder.class
+│       │   │                   │   │   ├── UpdateExerciseRequest.class
+│       │   │                   │   │   ├── UpdateExerciseRequest$UpdateExerciseRequestBuilder.class
+│       │   │                   │   │   ├── UpdateLogWorkoutRequest.class
+│       │   │                   │   │   ├── UpdateLogWorkoutRequest$UpdateLogWorkoutRequestBuilder.class
+│       │   │                   │   │   ├── UpdatePlanExerciseRequest.class
+│       │   │                   │   │   ├── UpdatePlanExerciseRequest$UpdatePlanExerciseRequestBuilder.class
+│       │   │                   │   │   ├── UpdateTrainingSessionRequest.class
+│       │   │                   │   │   ├── UpdateTrainingSessionRequest$UpdateTrainingSessionRequestBuilder.class
+│       │   │                   │   │   ├── UpdateWorkoutPlanRequest.class
+│       │   │                   │   │   ├── UpdateWorkoutPlanRequest$UpdateWorkoutPlanRequestBuilder.class
+│       │   │                   │   │   ├── WorkoutExerciseDetailsRequest.class
+│       │   │                   │   │   └── WorkoutExerciseDetailsRequest$WorkoutExerciseDetailsRequestBuilder.class
+│       │   │                   │   └── response
+│       │   │                   │       ├── AttendanceResponse.class
+│       │   │                   │       ├── AttendanceResponse$AttendanceResponseBuilder.class
+│       │   │                   │       ├── AttendanceSessionResponse.class
+│       │   │                   │       ├── AttendanceSessionResponse$AttendanceSessionResponseBuilder.class
+│       │   │                   │       ├── AttendanceStatsResponse.class
+│       │   │                   │       ├── CheckInResponse.class
+│       │   │                   │       ├── CheckInResponse$CheckInResponseBuilder.class
+│       │   │                   │       ├── ClientWorkoutPlanResponse.class
+│       │   │                   │       ├── ClientWorkoutPlanResponse$ClientWorkoutPlanResponseBuilder.class
+│       │   │                   │       ├── ExerciseResponse.class
+│       │   │                   │       ├── ExerciseResponse$ExerciseResponseBuilder.class
+│       │   │                   │       ├── ExerciseShortResponse.class
+│       │   │                   │       ├── ExerciseShortResponse$ExerciseShortResponseBuilder.class
+│       │   │                   │       ├── SessionShortResponse.class
+│       │   │                   │       ├── SessionShortResponse$SessionShortResponseBuilder.class
+│       │   │                   │       ├── TrainingSessionResponse.class
+│       │   │                   │       ├── TrainingSessionResponse$TrainingSessionResponseBuilder.class
+│       │   │                   │       ├── WaitlistResponse.class
+│       │   │                   │       ├── WaitlistResponse$WaitlistResponseBuilder.class
+│       │   │                   │       ├── WorkoutLogResponse.class
+│       │   │                   │       ├── WorkoutLogResponse$WorkoutLogResponseBuilder.class
+│       │   │                   │       ├── WorkoutPlanExerciseResponse.class
+│       │   │                   │       ├── WorkoutPlanExerciseResponse$WorkoutPlanExerciseResponseBuilder.class
+│       │   │                   │       ├── WorkoutPlanResponse.class
+│       │   │                   │       ├── WorkoutPlanResponse$WorkoutPlanResponseBuilder.class
+│       │   │                   │       ├── WorkoutPlanShortResponse.class
+│       │   │                   │       └── WorkoutPlanShortResponse$WorkoutPlanShortResponseBuilder.class
+│       │   │                   ├── entity
+│       │   │                   │   ├── Attendance.class
+│       │   │                   │   ├── Attendance$AttendanceBuilder.class
+│       │   │                   │   ├── Attendance$AttendanceBuilderImpl.class
+│       │   │                   │   ├── ClientWorkoutPlan.class
+│       │   │                   │   ├── ClientWorkoutPlan$ClientWorkoutPlanBuilder.class
+│       │   │                   │   ├── ClientWorkoutPlan$ClientWorkoutPlanBuilderImpl.class
+│       │   │                   │   ├── Exercise.class
+│       │   │                   │   ├── Exercise$ExerciseBuilder.class
+│       │   │                   │   ├── Exercise$ExerciseBuilderImpl.class
+│       │   │                   │   ├── SessionWaitlist.class
+│       │   │                   │   ├── SessionWaitlist$SessionWaitlistBuilder.class
+│       │   │                   │   ├── SessionWaitlist$SessionWaitlistBuilderImpl.class
+│       │   │                   │   ├── TrainingSession.class
+│       │   │                   │   ├── TrainingSession$TrainingSessionBuilder.class
+│       │   │                   │   ├── TrainingSession$TrainingSessionBuilderImpl.class
+│       │   │                   │   ├── WorkoutLog.class
+│       │   │                   │   ├── WorkoutLog$WorkoutLogBuilder.class
+│       │   │                   │   ├── WorkoutLog$WorkoutLogBuilderImpl.class
+│       │   │                   │   ├── WorkoutPlan.class
+│       │   │                   │   ├── WorkoutPlan$WorkoutPlanBuilder.class
+│       │   │                   │   ├── WorkoutPlan$WorkoutPlanBuilderImpl.class
+│       │   │                   │   ├── WorkoutPlanExercise.class
+│       │   │                   │   ├── WorkoutPlanExercise$WorkoutPlanExerciseBuilder.class
+│       │   │                   │   └── WorkoutPlanExercise$WorkoutPlanExerciseBuilderImpl.class
+│       │   │                   ├── enums
+│       │   │                   │   ├── ClientWorkoutStatus.class
+│       │   │                   │   ├── DifficultyLevel.class
+│       │   │                   │   ├── ExerciseCategory.class
+│       │   │                   │   ├── MuscleGroup.class
+│       │   │                   │   ├── TrainingStatus.class
+│       │   │                   │   ├── TrainingType.class
+│       │   │                   │   └── WaitlistStatus.class
+│       │   │                   ├── mapper
+│       │   │                   │   ├── AttendanceMapper.class
+│       │   │                   │   ├── ClientWorkoutPlanMapper.class
+│       │   │                   │   ├── ExerciseMapper.class
+│       │   │                   │   ├── TrainingSessionMapper.class
+│       │   │                   │   ├── WaitlistMapper.class
+│       │   │                   │   ├── WorkoutLogMapper.class
+│       │   │                   │   ├── WorkoutPlanExerciseMapper.class
+│       │   │                   │   └── WorkoutPlanMapper.class
+│       │   │                   ├── repository
+│       │   │                   │   ├── IAttendanceRepository.class
+│       │   │                   │   ├── IClientWorkoutPlanRepository.class
+│       │   │                   │   ├── IExerciseRepository.class
+│       │   │                   │   ├── ITrainingSessionRepository.class
+│       │   │                   │   ├── IWaitlistRepository.class
+│       │   │                   │   ├── IWorkoutLogRepository.class
+│       │   │                   │   ├── IWorkoutPlanExerciseRepository.class
+│       │   │                   │   └── IWorkoutPlanRepository.class
+│       │   │                   ├── service
+│       │   │                   │   ├── IAttendanceService.class
+│       │   │                   │   ├── IClientWorkoutPlanService.class
+│       │   │                   │   ├── IExerciseService.class
+│       │   │                   │   ├── impl
+│       │   │                   │   │   ├── AttendanceServiceImpl.class
+│       │   │                   │   │   ├── ClientWorkoutPlanServiceImpl.class
+│       │   │                   │   │   ├── ExerciseServiceImpl.class
+│       │   │                   │   │   ├── TrainingSessionServiceImpl.class
+│       │   │                   │   │   ├── WaitlistServiceImpl.class
+│       │   │                   │   │   ├── WorkoutLogServiceImpl.class
+│       │   │                   │   │   ├── WorkoutPlanExerciseServiceImpl.class
+│       │   │                   │   │   ├── WorkoutPlanExerciseServiceImpl$1.class
+│       │   │                   │   │   └── WorkoutPlanServiceImpl.class
+│       │   │                   │   ├── ITrainingSessionService.class
+│       │   │                   │   ├── IWaitlistService.class
+│       │   │                   │   ├── IWorkoutLogService.class
+│       │   │                   │   ├── IWorkoutPlanExerciseService.class
+│       │   │                   │   └── IWorkoutPlanService.class
+│       │   │                   └── validator
+│       │   │                       └── TrainingSessionValidator.class
+│       │   ├── db
+│       │   │   └── migration
+│       │   │       ├── V1__create_auth_tables.sql
+│       │   │       ├── V10__seed_all_tables.sql
+│       │   │       ├── V11__add_extended_seed_data.sql
+│       │   │       ├── V12__reseed_all_uuid.sql
+│       │   │       ├── V13__add_crypto_payment_fields.sql
+│       │   │       ├── V14__create_notifications_table.sql
+│       │   │       ├── V15__seed_notifications.sql
+│       │   │       ├── V16__fix_notification_types.sql
+│       │   │       ├── V17__create_trainer_review_tables.sql
+│       │   │       ├── V18__seed_trainer_reviews.sql
+│       │   │       ├── V19__add_visibility_to_reviews.sql
+│       │   │       ├── V2__create_profile_tables.sql
+│       │   │       ├── V20__create_session_waitlist_tables.sql
+│       │   │       ├── V21__add_telegram_chat_id_to_users.sql
+│       │   │       ├── V22__add_test_data.sql
+│       │   │       ├── V23__seed_new_users_profiles.sql
+│       │   │       ├── V24__seed_memberships_payments.sql
+│       │   │       ├── V25__seed_sessions_attendances.sql
+│       │   │       ├── V26__seed_workout_plans_logs.sql
+│       │   │       ├── V27__seed_progress_data.sql
+│       │   │       ├── V28__seed_nutrition_data.sql
+│       │   │       ├── V29__seed_notifications_reviews.sql
+│       │   │       ├── V3__create_membership_payment_tables.sql
+│       │   │       ├── V4__create_training_tables.sql
+│       │   │       ├── V5__create_exercise_workout_tables.sql
+│       │   │       ├── V6__create_health_tables.sql
+│       │   │       ├── V7__create_nutrition_tables.sql
+│       │   │       ├── V8__create_utility_tables.sql
+│       │   │       └── V9__insert_default_data.sql
+│       │   └── keys
+│       │       └── local-only
+│       │           ├── private_key.pem
+│       │           └── public_key.pem
+│       ├── generated-sources
+│       │   └── annotations
+│       ├── generated-test-sources
+│       │   └── test-annotations
+│       ├── maven-archiver
+│       │   └── pom.properties
+│       ├── maven-status
+│       │   └── maven-compiler-plugin
+│       │       ├── compile
+│       │       │   └── default-compile
+│       │       │       ├── createdFiles.lst
+│       │       │       └── inputFiles.lst
+│       │       └── testCompile
+│       │           └── default-testCompile
+│       │               ├── createdFiles.lst
+│       │               └── inputFiles.lst
+│       ├── quikkkk-0.0.1-SNAPSHOT.jar
+│       ├── quikkkk-0.0.1-SNAPSHOT.jar.original
+│       └── test-classes
+│           └── com
+│               └── dev
+│                   └── quikkkk
+│                       ├── config
+│                       │   ├── TestCacheConfig.class
+│                       │   └── TestSecurityConfig.class
+│                       ├── controller
+│                       │   ├── AuthenticationControllerTest.class
+│                       │   ├── AuthenticationControllerTest$TestSecurityConfiguration.class
+│                       │   ├── ClientReviewControllerTest.class
+│                       │   ├── ClientReviewControllerTest$TestSecurityConfiguration.class
+│                       │   ├── ExerciseControllerTest.class
+│                       │   ├── ExerciseControllerTest$TestSecurityConfiguration.class
+│                       │   ├── MembershipControllerTest.class
+│                       │   ├── MembershipControllerTest$TestSecurityConfiguration.class
+│                       │   ├── NotificationControllerTest.class
+│                       │   ├── NotificationControllerTest$TestSecurityConfiguration.class
+│                       │   ├── NutritionControllerTest.class
+│                       │   ├── NutritionControllerTest$TestSecurityConfiguration.class
+│                       │   ├── PaymentControllerTest.class
+│                       │   ├── PaymentControllerTest$TestSecurityConfiguration.class
+│                       │   ├── ProgressTrackingControllerTest.class
+│                       │   ├── ProgressTrackingControllerTest$TestSecurityConfiguration.class
+│                       │   ├── TrainingSessionControllerTest.class
+│                       │   └── TrainingSessionControllerTest$TestSecurityConfiguration.class
+│                       ├── FitHubApplicationTests.class
+│                       ├── fixtures
+│                       │   └── TestFixtures.class
+│                       ├── integration
+│                       │   └── AbstractIntegrationTest.class
+│                       ├── repository
+│                       │   ├── ClientProfileRepositoryTest.class
+│                       │   ├── ExerciseRepositoryTest.class
+│                       │   ├── FoodRepositoryTest.class
+│                       │   ├── GoalRepositoryTest.class
+│                       │   ├── MembershipRepositoryTest.class
+│                       │   ├── NotificationRepositoryTest.class
+│                       │   ├── PaymentRepositoryTest.class
+│                       │   ├── ReviewRepositoryTest.class
+│                       │   ├── TrainingSessionRepositoryTest.class
+│                       │   └── UserRepositoryTest.class
+│                       ├── service
+│                       │   ├── AccountActionServiceImplTest.class
+│                       │   ├── AdminReviewServiceImplTest.class
+│                       │   ├── AppBootstrapServiceImplTest.class
+│                       │   ├── AuthenticationServiceImplTest.class
+│                       │   ├── BodyMeasurementServiceImplTest.class
+│                       │   ├── ClientProfileServiceImplTest.class
+│                       │   ├── ClientReviewServiceImplTest.class
+│                       │   ├── ExerciseServiceImplTest.class
+│                       │   ├── FoodServiceImplTest.class
+│                       │   ├── GoalServiceImplTest.class
+│                       │   ├── MealPlanServiceImplTest.class
+│                       │   ├── MembershipServiceImplTest.class
+│                       │   ├── NotificationRealtimeServiceImplTest.class
+│                       │   ├── NotificationServiceImplTest.class
+│                       │   ├── PaymentServiceImplTest.class
+│                       │   ├── PersonalRecordServiceImplTest.class
+│                       │   ├── ReviewModerationListenerTest.class
+│                       │   ├── SessionLockServiceImplTest.class
+│                       │   ├── SpecializationServiceImplTest.class
+│                       │   ├── TokenBlacklistServiceImplTest.class
+│                       │   ├── TrainerProfileServiceImplTest.class
+│                       │   ├── TrainingSessionServiceImplTest.class
+│                       │   ├── UserServiceImplTest.class
+│                       │   ├── WaitlistServiceImplTest.class
+│                       │   ├── WorkoutLogServiceImplTest.class
+│                       │   └── WorkoutPlanServiceImplTest.class
+│                       └── validation
+│                           └── PasswordMatchesValidatorTest.class
+├── library
+│   ├── exercises
+│   │   └── ID0
+│   │       ├── pictures
+│   │       └── videos
+│   └── recipes
+│       └── ID0
+│           └── pictures
+├── logs
+│   ├── backend
+│   │   ├── fithub.log
+│   │   ├── fithub.log.2026-10-18.0.gz
+│   │   ├── fithub.log.2026-10-19.0.gz
+│   │   ├── fithub.log.2026-10-20.0.gz
+│   │   ├── fithub.log.2026-10-21.0.gz
+│   │   ├── fithub.log.2026-10-21.1.gz
+│   │   └── fithub.log.2026-10-21.2.gz
+│   └── system
+├── scripts
+│   ├── backup
+│   ├── maintenance
+│   ├── restore
+│   └── updatecheck
+├── SQL
+└── srv
+    └── clients
+        └── ID0
+            ├── documents
+            ├── formchecks
+            └── videos
+
+385 directories, 1380 files

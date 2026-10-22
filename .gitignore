@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+scripts/backup/backup.json
+backups/
+.DS_Store
+dist/
