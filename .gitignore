@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 scripts/backup/backup.json
+scripts/monitormetrics/cpu-push-url.txt
 backups/
 .DS_Store
 dist/
