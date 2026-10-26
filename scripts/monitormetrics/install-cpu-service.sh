@@ -1,11 +1,12 @@
 #!/bin/bash
-# Installa o aggiorna il servizio CPU sul Mac che esegue questo comando.
+# Installa o aggiorna il monitor CPU direttamente nel progetto FitHub.
 set -euo pipefail
+umask 077
 
 if [[ "${1:-}" == --help ]]; then
   echo "Uso: /bin/bash install-cpu-service.sh"
-  echo "Installa e avvia il monitor CPU al boot, ogni 15 secondi. Richiede sudo."
-  echo "cpu.sh e cpu-push-url.txt devono essere nella stessa cartella."
+  echo "Avvia CPU al boot, ogni 15 secondi. Richiede sudo."
+  echo "Script e URL restano in Fithub/scripts/monitormetrics; log in Fithub/logs/system/monitormetrics."
   exit 0
 fi
 if (( $# != 0 )); then
@@ -16,16 +17,16 @@ if [[ "$(/usr/bin/uname -s)" != Darwin ]]; then
   echo "ERRORE: eseguire questo installer sul Mac mini." >&2
   exit 2
 fi
-
-SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
-if [[ ! -f "$SCRIPT_DIR/cpu.sh" || ! -s "$SCRIPT_DIR/cpu-push-url.txt" ]]; then
-  echo "ERRORE: servono cpu.sh e cpu-push-url.txt non vuoto accanto all'installer." >&2
+SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd -P)"
+PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd -P)"
+if [[ "$SCRIPT_DIR" != "$PROJECT_ROOT/scripts/monitormetrics" ||
+      ! -f "$SCRIPT_DIR/cpu.sh" || -L "$SCRIPT_DIR/cpu.sh" ]]; then
+  echo "ERRORE: collocare installer e cpu.sh in Fithub/scripts/monitormetrics." >&2
   exit 2
 fi
 if (( EUID != 0 )); then
   exec /usr/bin/sudo /bin/bash "$SCRIPT_DIR/install-cpu-service.sh"
 fi
-
 SERVICE_USER="${SUDO_USER:-}"
 if [[ -z "$SERVICE_USER" || "$SERVICE_USER" == root ]]; then
   echo "ERRORE: avvia l'installer dal tuo account amministratore, non da una shell root." >&2
@@ -33,60 +34,131 @@ if [[ -z "$SERVICE_USER" || "$SERVICE_USER" == root ]]; then
 fi
 SERVICE_GROUP="$(/usr/bin/id -gn "$SERVICE_USER")"
 LABEL=ch.nmperformance.fithub.cpu
-SERVICE_DIR="/Library/Application Support/FitHub/monitormetrics"
-LOG_DIR=/Library/Logs/FitHub
+LOG_DIR="$PROJECT_ROOT/logs/system/monitormetrics"
 PLIST="/Library/LaunchDaemons/$LABEL.plist"
+# Vecchi percorsi: usati soltanto per recuperare dati durante la migrazione.
+LEGACY_DIR="/Library/Application Support/FitHub/monitormetrics"
+LEGACY_LOG_DIR="/Library/Logs/FitHub"
+URL_FILE="$SCRIPT_DIR/cpu-push-url.txt"
+URL_SOURCE="$URL_FILE"
+if [[ ! -e "$URL_FILE" && ! -L "$URL_FILE" ]]; then
+  URL_SOURCE="$LEGACY_DIR/cpu-push-url.txt"
+fi
+if [[ ! -f "$URL_SOURCE" || -L "$URL_SOURCE" || ! -s "$URL_SOURCE" ]]; then
+  echo "ERRORE: serve cpu-push-url.txt non vuoto nella cartella degli script." >&2
+  exit 2
+fi
+# Convalidare prima di fermare il servizio; non stampare mai il token.
+url="$(/bin/cat "$URL_SOURCE")" || exit 2
+url="${url%$'\r'}"
+url="${url%%\?*}"
+if [[ ! "$url" =~ ^https?://[^/?#[:space:]]+/api/push/[A-Za-z0-9_-]+$ ]] ||
+   [[ "$url" == *'"'* || "$url" == *'\'* || "$url" == *'@'* ]]; then
+  echo "ERRORE: URL Push CPU non valido." >&2
+  exit 2
+fi
+unset url
+/bin/bash -n "$SCRIPT_DIR/cpu.sh"
 STAGING="$(/usr/bin/mktemp -d /private/tmp/fithub-cpu.XXXXXX)"
-trap '/bin/rm -f "$STAGING/service.plist"; /bin/rmdir "$STAGING"' EXIT
+trap '/bin/rm -f "$STAGING/service.plist" "$STAGING/status-daily.json" "$STAGING/status-weekly.json" "$STAGING/status-monthly.json"; /bin/rmdir "$STAGING"' EXIT
 
-# Il plist è incorporato: basta trasferire questo installer accanto a cpu.sh.
+# Il plist separato è un riferimento per admin; qui i percorsi sono dinamici.
 /bin/cat > "$STAGING/service.plist" <<'PLIST_XML'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Label</key>
-    <string>ch.nmperformance.fithub.cpu</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/bin/bash</string>
-        <string>/Library/Application Support/FitHub/monitormetrics/cpu.sh</string>
-        <string>--once</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>StartInterval</key>
-    <integer>15</integer>
-    <key>Umask</key>
-    <integer>63</integer>
-    <key>StandardOutPath</key>
-    <string>/Library/Logs/FitHub/cpu.log</string>
-    <key>StandardErrorPath</key>
-    <string>/Library/Logs/FitHub/cpu-error.log</string>
+	<key>Label</key>
+	<string>ch.nmperformance.fithub.cpu</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/bash</string>
+		<string>/Users/admin/Documents/Fithub/scripts/monitormetrics/cpu.sh</string>
+		<string>--service</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StartInterval</key>
+	<integer>15</integer>
+	<key>Umask</key>
+	<integer>63</integer>
 </dict>
 </plist>
 PLIST_XML
 /usr/bin/plutil -insert UserName -string "$SERVICE_USER" "$STAGING/service.plist"
+/usr/bin/plutil -remove ProgramArguments.1 "$STAGING/service.plist"
+/usr/bin/plutil -insert ProgramArguments.1 -string "$SCRIPT_DIR/cpu.sh" "$STAGING/service.plist"
 /usr/bin/plutil -lint "$STAGING/service.plist"
-/bin/bash -n "$SCRIPT_DIR/cpu.sh"
 
-# Ricarica soltanto il servizio CPU, anche quando era già installato.
+# Stessa label: sostituisce il vecchio servizio senza creare un secondo job.
 if /bin/launchctl print "system/$LABEL" >/dev/null 2>&1; then
   /bin/launchctl bootout "system/$LABEL"
 fi
-/usr/bin/install -d -o root -g wheel -m 755 "$SERVICE_DIR"
+/usr/sbin/chown "$SERVICE_USER:$SERVICE_GROUP" "$SCRIPT_DIR" "$SCRIPT_DIR/cpu.sh"
+/bin/chmod 700 "$SCRIPT_DIR" "$SCRIPT_DIR/cpu.sh"
+if [[ "$URL_SOURCE" != "$URL_FILE" ]]; then
+  /usr/bin/install -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 600 "$URL_SOURCE" "$URL_FILE"
+fi
+/usr/sbin/chown "$SERVICE_USER:$SERVICE_GROUP" "$URL_FILE"
+/bin/chmod 600 "$URL_FILE"
+# Conservare proprietario e permessi delle directory condivise già presenti.
+for directory in "$PROJECT_ROOT/logs" "$PROJECT_ROOT/logs/system"; do
+  if [[ ! -d "$directory" ]]; then
+    /usr/bin/install -d -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 755 "$directory"
+  fi
+done
 /usr/bin/install -d -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 700 "$LOG_DIR"
-/usr/bin/install -o root -g wheel -m 755 "$SCRIPT_DIR/cpu.sh" "$SERVICE_DIR/cpu.sh"
-/usr/bin/install -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 600 \
-  "$SCRIPT_DIR/cpu-push-url.txt" "$SERVICE_DIR/cpu-push-url.txt"
-/usr/bin/touch "$LOG_DIR/cpu.log" "$LOG_DIR/cpu-error.log"
-/usr/sbin/chown "$SERVICE_USER:$SERVICE_GROUP" "$LOG_DIR/cpu.log" "$LOG_DIR/cpu-error.log"
-/bin/chmod 600 "$LOG_DIR/cpu.log" "$LOG_DIR/cpu-error.log"
+for filename in cpu.log cpu-error.log; do
+  if [[ -L "$LOG_DIR/$filename" || ( -e "$LOG_DIR/$filename" && ! -f "$LOG_DIR/$filename" ) ]]; then
+    echo "ERRORE: percorso log non valido: $LOG_DIR/$filename" >&2
+    exit 2
+  fi
+  if [[ ! -e "$LOG_DIR/$filename" && -f "$LEGACY_LOG_DIR/$filename" && ! -L "$LEGACY_LOG_DIR/$filename" ]]; then
+    /usr/bin/install -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 600 "$LEGACY_LOG_DIR/$filename" "$LOG_DIR/$filename"
+  fi
+  /usr/bin/touch "$LOG_DIR/$filename"
+  /usr/sbin/chown "$SERVICE_USER:$SERVICE_GROUP" "$LOG_DIR/$filename"
+  /bin/chmod 600 "$LOG_DIR/$filename"
+done
+
 /usr/bin/install -o root -g wheel -m 644 "$STAGING/service.plist" "$PLIST"
+BASE_LOG_BYTES="$(/usr/bin/stat -f %z "$LOG_DIR/cpu.log")"
 /bin/launchctl enable "system/$LABEL"
 /bin/launchctl bootstrap system "$PLIST"
 
-echo "Servizio CPU installato e avviato: campioni ogni 15 secondi, utente $SERVICE_USER."
-echo "Avvio automatico ai prossimi boot; puoi chiudere il Terminale."
+# bootstrap riuscito significa soltanto registrato: verificare il primo processo reale.
+echo "Verifica del primo campione cpu tramite launchd..."
+verified=0
+for attempt in {1..25}; do
+  service_info="$(/bin/launchctl print "system/$LABEL" 2>/dev/null)" || service_info=""
+  if [[ "$service_info" == *'job state = spawn failed'* ]]; then
+    echo "ERRORE: $LABEL non si avvia (spawn failed). Verificare accesso a Documents e configurazione launchd." >&2
+    exit 2
+  fi
+  code="$(printf '%s\n' "$service_info" | /usr/bin/awk '/^[[:space:]]*last exit code =/ { sub(/:$/, "", $5); print $5; exit }')"
+  if [[ "$code" =~ ^-?[0-9]+$ && "$service_info" != *'state = running'* ]]; then
+    log_bytes="$(/usr/bin/stat -f %z "$LOG_DIR/cpu.log" 2>/dev/null)" || log_bytes=0
+    if [[ "$code" == 0 || "$code" == 1 ]] && (( log_bytes <= BASE_LOG_BYTES )); then
+      /bin/sleep 1
+      continue
+    fi
+    case "$code" in
+      0) echo "Primo campione cpu: lettura e invio riusciti."; verified=1; break ;;
+      1) echo "Primo campione cpu: sensore eseguito, condizione DOWN rilevata."; verified=1; break ;;
+      78|126|127)
+        echo "ERRORE: cpu non eseguibile da launchd (codice $code). Controllare i permessi Privacy di /bin/bash e l'accesso a Documents." >&2
+        exit 2 ;;
+      *) echo "ERRORE: primo campione cpu fallito (codice $code). Leggere $LOG_DIR/cpu-error.log e $LOG_DIR/cpu.log." >&2; exit 2 ;;
+    esac
+  fi
+  /bin/sleep 1
+done
+if (( verified == 0 )); then
+  echo "ERRORE: primo campione cpu non verificato entro 25 secondi; controllare launchctl print e i log." >&2
+  exit 2
+fi
+
+echo "Servizio CPU installato: ogni 15 secondi, utente $SERVICE_USER."
+echo "Script: $SCRIPT_DIR/cpu.sh"
 echo "Log: $LOG_DIR/cpu.log"
 echo "Errori: $LOG_DIR/cpu-error.log"

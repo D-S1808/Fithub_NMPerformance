@@ -1,0 +1,26 @@
+{
+  "docker": {
+    "enabled": true,
+    "exclude": [],
+    "local_images": ["fithub-backend:local", "fithub-frontend:local"]
+  },
+  "docker_desktop": true,
+  "macos": true,
+  "homebrew": true,
+  "applications": {
+    "enabled": true,
+    "directories": ["/Applications", "~/Applications", "/System/Applications", "/System/Library/CoreServices/Applications"],
+    "app_store_country": "ch",
+    "cask_overrides": {}
+  },
+  "git": {
+    "enabled": true,
+    "path": "FitHub"
+  },
+  "down_on_updates": true,
+  "schedule": {
+    "weekday": 1,
+    "hour": 19,
+    "minute": 0
+  }
+}

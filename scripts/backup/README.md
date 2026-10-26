@@ -333,8 +333,15 @@ accesso a Documents e Docker: i permessi del Terminale non confermano quelli
 di Comandi Rapidi. Docker deve essere avviato nell'account che esegue il comando.
 I requisiti specifici di Time Machine sono descritti nella sezione seguente.
 
-Una seconda esecuzione contemporanea viene rifiutata con errore. Lo stato JSON
-e i log restano locali; non sono collegati a notifiche email o a monitoraggio.
+Una seconda esecuzione contemporanea viene rifiutata con errore. Stato JSON e
+log restano locali. Se è installato il [monitor Backup di Uptime Kuma](../monitormetrics/README-BACKUP.md),
+il motore aggiornato pubblica anche una copia minima di esito e timestamp in
+`scripts/monitormetrics/` sotto la root configurata, che sul Mac mini è
+`/Users/admin/Documents/Fithub/scripts/monitormetrics/`. L'installer del monitor
+predispone questa cartella. Solo daily, weekly e monthly vengono pubblicati; log, errori
+dettagliati e dati dei backup non vengono copiati in quella cartella.
+Il monitor gestisce separatamente invii e notifiche Kuma. Un errore di scrittura
+della copia di monitoring viene registrato nel log senza alterare l'esito del backup.
 Non viene installata né modificata alcuna automazione sul Mac.
 
 Se sul Mac mini avevi già installato i due LaunchAgents della precedente versione,

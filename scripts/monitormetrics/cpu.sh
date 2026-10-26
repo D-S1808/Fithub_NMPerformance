@@ -7,6 +7,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
 INTERVAL=15
 ONCE=0
 LOCAL_ONLY=0
+SERVICE_MODE=0
 
 usage() {
   cat <<'EOF'
@@ -15,6 +16,7 @@ Uso: /bin/bash cpu.sh [--once | --dry-run]
   senza opzioni  Legge la CPU e invia a Kuma ogni 15 secondi; Ctrl+C termina.
   --once         Esegue un solo campione, con invio a Kuma se configurato.
   --dry-run      Esegue un solo campione locale, senza inviare a Kuma.
+  --service      Campione singolo con log nel progetto, usato da launchd.
   --help         Mostra questo messaggio.
 
 URL Push: variabile KUMA_CPU_PUSH_URL oppure file cpu-push-url.txt
@@ -25,6 +27,7 @@ EOF
 case "${1:-}" in
   "") ;;
   --once) ONCE=1 ;;
+  --service) ONCE=1; SERVICE_MODE=1 ;;
   --dry-run) ONCE=1; LOCAL_ONLY=1 ;;
   --help|-h) usage; exit 0 ;;
   *) usage >&2; exit 2 ;;
@@ -33,6 +36,23 @@ if (( $# > 1 )); then usage >&2; exit 2; fi
 if [[ "$(/usr/bin/uname -s)" != Darwin ]]; then
   echo "ERRORE: eseguire questo script direttamente su macOS." >&2
   exit 2
+fi
+
+# launchd avvia solo Bash: i log sotto Documents vengono aperti dal processo utente.
+if (( SERVICE_MODE )); then
+  umask 077
+  LOG_DIR="$(cd -- "$SCRIPT_DIR/../.." && pwd)/logs/system/monitormetrics"
+  if ! { exec 3>>"$LOG_DIR/cpu-error.log"; } 2>/dev/null; then
+    /usr/bin/logger -t ch.nmperformance.fithub.cpu "FitHub: impossibile aprire i log in Documents; verificare i permessi Privacy di /bin/bash."
+    echo "ERRORE: log non accessibili; verificare permessi e Privacy di macOS." >&2
+    exit 78
+  fi
+  exec 2>&3
+  exec 3>&-
+  if ! { exec >>"$LOG_DIR/cpu.log"; }; then
+    echo "ERRORE: log non accessibile; verificare permessi e Privacy di macOS." >&2
+    exit 78
+  fi
 fi
 
 push_url=""

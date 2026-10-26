@@ -62,6 +62,7 @@ class Backup:
         self.root = (self.config_path.parent / Path(self.cfg["root"]).expanduser()).resolve()
         require(self.root.is_dir(), f"Directory FitHub assente: {self.root}")
         self.store = self.root / "backups"
+        self.monitor_status_dir = self.root / "scripts" / "monitormetrics"
         self.repo = self.store / "restic"
         self.current = self.store / "database" / "current"
         self.host = self.cfg.get("host", "fithub-mac-mini")
@@ -127,6 +128,19 @@ class Backup:
         return self.run(["restic", "--repo", repo, "--password-file", password, *args],
                         capture=capture, env=env)
 
+    def publish_monitor_status(self, command, record):
+        """Export minimal metadata only when the monitor installer prepared its folder."""
+        if command not in ("daily", "weekly", "monthly"):
+            return
+        try:
+            if not self.monitor_status_dir.is_dir():
+                return
+            write_json(self.monitor_status_dir / f"status-{command}.json", {
+                "ok": record["ok"], "finished_at": record["finished_at"]})
+        except OSError:
+            # Backup success/failure must not depend on the monitoring destination.
+            self.log.warning("Stato monitoring backup non aggiornato; verificare cartella e permessi")
+
     @contextlib.contextmanager
     def locked(self, command):
         self.store.mkdir(mode=0o700, exist_ok=True)
@@ -151,14 +165,18 @@ class Backup:
                     self.log.info("Avvio %s", command)
                     yield
                     self.log.info("Completato %s", command)
-                    write_json(self.store / f"status-{command}.json", {
+                    record = {
                         "ok": True, "finished_at": dt.datetime.now().astimezone().isoformat(),
-                        "log": str(log_path)})
+                        "log": str(log_path)}
+                    write_json(self.store / f"status-{command}.json", record)
+                    self.publish_monitor_status(command, record)
                 except BaseException as exc:
                     self.log.error("Fallito %s: %s", command, exc)
-                    write_json(self.store / f"status-{command}.json", {
+                    record = {
                         "ok": False, "finished_at": dt.datetime.now().astimezone().isoformat(),
-                        "log": str(log_path), "error": str(exc)})
+                        "log": str(log_path), "error": str(exc)}
+                    write_json(self.store / f"status-{command}.json", record)
+                    self.publish_monitor_status(command, record)
                     raise
                 finally:
                     sys.stdout.flush()

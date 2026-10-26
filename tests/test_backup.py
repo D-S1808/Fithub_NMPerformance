@@ -23,6 +23,8 @@ class SimulatedBackup(module.Backup):
     """Replace only external Docker/restic boundaries; run actual filesystem logic."""
     def __init__(self, path, vault):
         super().__init__(path)
+        # Never publish test metadata into a real installed monitoring service.
+        self.monitor_status_dir = vault.parent / "monitor-status"
         self.vault = vault
         self.calls = []
         self.failure = None
@@ -308,6 +310,70 @@ class BackupTests(unittest.TestCase):
             with self.backup.locked("daily"):
                 raise module.BackupError("intentional fixture error")
         self.assertFalse(json.loads((self.backup.store / "status-daily.json").read_text())["ok"])
+
+    def test_monitor_destination_is_project_metrics_directory(self):
+        backup = module.Backup(self.config)
+        destination = self.root / "scripts" / "monitormetrics"
+        self.assertEqual(backup.monitor_status_dir, destination)
+        destination.mkdir()
+        record = {"ok": True, "finished_at": "2026-10-26T03:00:10.331246+01:00",
+                  "log": "PRIVATE_LOG"}
+        backup.publish_monitor_status("daily", record)
+        self.assertEqual(json.loads((destination / "status-daily.json").read_text()),
+                         {"ok": True, "finished_at": record["finished_at"]})
+
+    def test_monitor_export_publishes_only_minimal_backup_metadata(self):
+        destination = self.backup.monitor_status_dir
+        destination.mkdir()
+        for command in ("daily", "weekly", "monthly"):
+            with self.backup.locked(command):
+                pass
+            original = json.loads((self.backup.store / f"status-{command}.json").read_text())
+            exported = json.loads((destination / f"status-{command}.json").read_text())
+            self.assertEqual(exported, {"ok": True, "finished_at": original["finished_at"]})
+        self.assertEqual(len(list(destination.iterdir())), 3)
+
+    def test_monitor_export_preserves_failure_without_exporting_error_details(self):
+        destination = self.backup.monitor_status_dir
+        destination.mkdir()
+        with self.assertRaises(module.BackupError):
+            with self.backup.locked("daily"):
+                raise module.BackupError("PRIVATE error and credentials fixture")
+        exported = json.loads((destination / "status-daily.json").read_text())
+        self.assertFalse(exported["ok"])
+        self.assertEqual(set(exported), {"ok", "finished_at"})
+        self.assertNotIn("PRIVATE", json.dumps(exported))
+
+    def test_monitor_export_ignores_verify_sync_and_initialization(self):
+        destination = self.backup.monitor_status_dir
+        destination.mkdir()
+        for command in ("verify", "sync", "init-local", "init-cloud", "init-ssd"):
+            with self.backup.locked(command):
+                pass
+        self.assertEqual(list(destination.iterdir()), [])
+
+    def test_monitor_export_does_not_create_uninstalled_monitor_directory(self):
+        with self.backup.locked("daily"):
+            pass
+        self.assertFalse(self.backup.monitor_status_dir.exists())
+
+    def test_monitor_write_failure_keeps_real_backup_outcome(self):
+        destination = self.backup.monitor_status_dir
+        destination.mkdir()
+        original_write = module.write_json
+        def write(path, data):
+            if path.parent == destination:
+                raise PermissionError("fixture metadata permission error")
+            return original_write(path, data)
+        with patch.object(module, "write_json", side_effect=write):
+            with self.assertLogs(self.backup.log, level="WARNING"):
+                with self.backup.locked("daily"):
+                    pass
+            self.assertTrue(json.loads((self.backup.store / "status-daily.json").read_text())["ok"])
+            with self.assertLogs(self.backup.log, level="WARNING"), self.assertRaisesRegex(module.BackupError, "original"):
+                with self.backup.locked("weekly"):
+                    raise module.BackupError("original failure")
+            self.assertFalse(json.loads((self.backup.store / "status-weekly.json").read_text())["ok"])
 
     def test_restore_test_uses_isolated_image_and_cleans_up_on_failure(self):
         self.backup.backup("daily")

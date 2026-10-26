@@ -2,25 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Label</key>
-    <string>ch.nmperformance.fithub.cpu</string>
-    <key>UserName</key>
-    <string>admin</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/bin/bash</string>
-        <string>/Library/Application Support/FitHub/monitormetrics/cpu.sh</string>
-        <string>--once</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>StartInterval</key>
-    <integer>15</integer>
-    <key>Umask</key>
-    <integer>63</integer>
-    <key>StandardOutPath</key>
-    <string>/Library/Logs/FitHub/cpu.log</string>
-    <key>StandardErrorPath</key>
-    <string>/Library/Logs/FitHub/cpu-error.log</string>
+	<key>Label</key>
+	<string>ch.nmperformance.fithub.cpu</string>
+	<key>UserName</key>
+	<string>admin</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/bash</string>
+		<string>/Users/admin/Documents/Fithub/scripts/monitormetrics/cpu.sh</string>
+		<string>--service</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StartInterval</key>
+	<integer>15</integer>
+	<key>Umask</key>
+	<integer>63</integer>
 </dict>
 </plist>
